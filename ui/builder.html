@@ -1,11 +1,20 @@
 <h2>Rectangle Creator</h2>
-<p>Count: <input id="count" value="5"></p>
-<p>X: <input id="x" value="0"></p>
-<p>Y: <input id="y" value="0"></p>
-<p>Blur: <input id="blur" value="0"></p>
-<p>Spread: <input id="spread" value="0"></p>
-<p>Color: <input id="color" value="#000000"></p>
-<p>Opacity: <input id="opacity" value="10"></p>
+<details>
+  <summary>Shadowname</summary>
+  <p>Name: <input id="name" value="shadow"></p>
+  <div>Type: <select id="type" value="">
+  <option value="dropshadow">Dropshadow</option>
+  <option value="innershadow">Innershadow</option>
+</select>
+</div>
+  <p>Count: <input id="count" value="5"></p>
+  <p>X: <input id="x" value="0"></p>
+  <p>Y: <input id="y" value="0"></p>
+  <p>Blur: <input id="blur" value="0"></p>
+  <p>Spread: <input id="spread" value="0"></p>
+  <p>Color: <input id="color" value="#000000"></p>
+  <p>Opacity: <input id="opacity" value="10"></p>
+</details>
 <button id="create">Create</button>
 <button id="cancel">Cancel</button>
 <script>
@@ -37,3 +46,5 @@ document.getElementById('cancel').onclick = () => {
 }
 
 </script>
+
+<!-- https://github.com/KaneCohen/tokenfield -->
