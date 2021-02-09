@@ -1,0 +1,39 @@
+<h2>Rectangle Creator</h2>
+<p>Count: <input id="count" value="5"></p>
+<p>X: <input id="x" value="0"></p>
+<p>Y: <input id="y" value="0"></p>
+<p>Blur: <input id="blur" value="0"></p>
+<p>Spread: <input id="spread" value="0"></p>
+<p>Color: <input id="color" value="#000000"></p>
+<p>Opacity: <input id="opacity" value="10"></p>
+<button id="create">Create</button>
+<button id="cancel">Cancel</button>
+<script>
+
+document.getElementById('create').onclick = () => {
+  const count = parseInt(document.getElementById('count').value, 10);
+  const x = parseInt(document.getElementById('x').value, 10);
+  const y = parseInt(document.getElementById('y').value, 10);
+  const blur = parseInt(document.getElementById('blur').value, 10);
+  const spread = parseInt(document.getElementById('spread').value, 10);
+  const color = parseInt(document.getElementById('color').value, 10);
+  const opacity = document.getElementById('opacity').value;
+  parent.postMessage({ pluginMessage: 
+    { 
+      type: 'create-rectangles', 
+      count,
+      x,
+      y,
+      blur,
+      spread,
+      color,
+      opacity
+    } 
+  }, '*')
+}
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+</script>
