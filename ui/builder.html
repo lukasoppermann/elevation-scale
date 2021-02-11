@@ -32,8 +32,24 @@
   </details>
 </template>
 <script> 
+// selections
 const template = document.getElementById("shadowTemplate")
 const list = document.getElementById("shadows")
+const count = document.querySelector('[data-property="count"]')
+const createStyles = document.querySelector('[data-property="createStyles"]')
+// events
+onmessage = ({data = undefined}) => {
+  if (data !== undefined && data.pluginMessage !== undefined) {
+    const eventData = JSON.parse(data.pluginMessage)
+    if (eventData.type === 'updateProperties') {
+      updatePanel(eventData.properties)
+    }
+  }
+}
+
+const updatePanel = data => {
+  count.value = data.count
+}
 
 const getShadowLayerValues = shadowDetails => {
   const properties = [
@@ -56,18 +72,14 @@ const getShadowLayerValues = shadowDetails => {
 }
 
 const saveShadows = (list) => {
-  // get the amount of shadows
-  const count = document.querySelector('[data-property="count"]').value;
-  // create styles?
-  const createStyles = document.querySelector('[data-property="createStyles"]').value;
   // get data for each shadow layer
   const shadowLayers = Array.from(list.querySelectorAll('details')).map(shadowDetails => getShadowLayerValues(shadowDetails))
   // send data
   parent.postMessage({ pluginMessage: 
     { 
       type: 'saveShadows',
-      count,
-      createStyles,
+      count: count.value,
+      createStyles: createStyles.value,
       shadowLayers
     } 
   }, '*')

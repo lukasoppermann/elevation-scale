@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "rootDir": "./"
   },
-  "include": ["src/**/*"],
+  "include": ["src/*"],
   "exclude": [
     "src/**/_*"
   ],
