@@ -1,82 +1,93 @@
 <h2>Rectangle Creator</h2>
-
+<p>Count: <input data-property="count" value="5"></p>
 <div id="shadows">
-  <details id="shadow_01">
-    <summary>Shadowname<button class="delete" data-action="deleteItem">🗑</button></summary>
-    <p>Name: <input id="name" value="shadow"></p>
-    <div>Type: <select id="type" value="">
-    <option value="dropshadow">Dropshadow</option>
-    <option value="innershadow">Innershadow</option>
-  </select>
-  </div>
-    <p>Count: <input id="count" value="5"></p>
-    <p>X: <input id="x" value="0"></p>
-    <p>Y: <input id="y" value="0"></p>
-    <p>Blur: <input id="blur" value="0"></p>
-    <p>Spread: <input id="spread" value="0"></p>
-    <p>Color: <input id="color" value="#000000"></p>
-    <p>Opacity: <input id="opacity" value="10"></p>
-  </details>
+
 </div>
 <button id="add">Add Shadow</button>
 
+<div class="section">
+  <label><input type="checkbox" data-property="createStyles" />Create styles</label>
+</div>
+
 <footer>
-  <button id="create">Create</button>
+  <button id="create">Save</button>
   <button id="cancel">Cancel</button>
 </footer>
 
 <template id="shadowTemplate">
-  <details id="shadow_01">
-    <summary>Shadowname<button class="delete" data-action="deleteItem">🗑</button></summary>
-    <p>Name: <input id="name" value="shadow"></p>
-    <div>Type: <select id="type" value="">
-    <option value="dropshadow">Dropshadow</option>
-    <option value="innershadow">Innershadow</option>
-  </select>
-  </div>
-    <p>Count: <input id="count" value="5"></p>
-    <p>X: <input id="x" value="0"></p>
-    <p>Y: <input id="y" value="0"></p>
-    <p>Blur: <input id="blur" value="0"></p>
-    <p>Spread: <input id="spread" value="0"></p>
-    <p>Color: <input id="color" value="#000000"></p>
-    <p>Opacity: <input id="opacity" value="10"></p>
+  <details class="shadow">
+    <summary><input class="name" value="shadow"><button class="delete" data-action="deleteItem">🗑</button></summary>
+    <div>Type: 
+      <select data-property="effectType">
+        <option value="dropshadow">Dropshadow</option>
+        <option value="innershadow">Innershadow</option>
+      </select>
+    </div>
+    <p>X: <input data-property="x" value="0"></p>
+    <p>Y: <input data-property="y" value="0"></p>
+    <p>Blur: <input data-property="blur" value="0"></p>
+    <p>Spread: <input data-property="spread" value="0"></p>
+    <p>Color: <input data-property="color" value="#000000"></p>
+    <p>Opacity: <input data-property="opacity" value="10"></p>
   </details>
 </template>
 <script> 
 const template = document.getElementById("shadowTemplate")
 const list = document.getElementById("shadows")
 
-document.getElementById('create').onclick = () => {
-  const count = parseInt(document.getElementById('count').value, 10);
-  const x = parseInt(document.getElementById('x').value, 10);
-  const y = parseInt(document.getElementById('y').value, 10);
-  const blur = parseInt(document.getElementById('blur').value, 10);
-  const spread = parseInt(document.getElementById('spread').value, 10);
-  const color = parseInt(document.getElementById('color').value, 10);
-  const opacity = document.getElementById('opacity').value;
+const getShadowLayerValues = shadowDetails => {
+  const properties = [
+    'effectType',
+    'x',
+    'y',
+    'blur',
+    'spread',
+    'color',
+    'opacity'
+  ]
+
+  let propertyValues = {}
+
+  properties.forEach(property => {
+    propertyValues[property] = shadowDetails.querySelector(`[data-property="${property}"]`).value
+  })
+  // return values
+  return propertyValues
+}
+
+const saveShadows = (list) => {
+  // get the amount of shadows
+  const count = document.querySelector('[data-property="count"]').value;
+  // create styles?
+  const createStyles = document.querySelector('[data-property="createStyles"]').value;
+  // get data for each shadow layer
+  const shadowLayers = Array.from(list.querySelectorAll('details')).map(shadowDetails => getShadowLayerValues(shadowDetails))
+  // send data
   parent.postMessage({ pluginMessage: 
     { 
-      type: 'create-rectangles', 
+      type: 'saveShadows',
       count,
-      x,
-      y,
-      blur,
-      spread,
-      color,
-      opacity
+      createStyles,
+      shadowLayers
     } 
   }, '*')
+}
+
+document.getElementById('create').onclick = () => {
+  saveShadows(list)
 }
 
 document.getElementById('cancel').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
 }
 
-
-document.getElementById('add').onclick = () => {
+const addShadowLayer = () => {
   const clone = template.content.cloneNode(true)
   list.appendChild(clone);
+}
+
+document.getElementById('add').onclick = () => {
+  addShadowLayer()
 }
 
 list.onclick = (e) => {
@@ -84,6 +95,9 @@ list.onclick = (e) => {
     e.target.parentNode.parentNode.remove()
   }
 }
+
+// add one shadow layer by default
+addShadowLayer()
 
 </script>
 
