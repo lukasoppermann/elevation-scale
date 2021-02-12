@@ -5,14 +5,26 @@ const SETTINGS = {
   BASE_SIZE: 450
 }
 
+const UI_DEFAULTS = {
+  count: 5,
+  createStyles: false,
+  elevationLayers: [{
+    type: 'dropshadow',
+    color: '000000',
+    opacity: '10 + #',
+    x: 0,
+    y: '0.5 * #',
+    spread: '2 * #',
+    radius: '#'
+  }]
+}
+
 export default (figma: PluginAPI, container: FrameNode | undefined) => {
   // if selection:
   // -> count layers
   // resize height
   // prepare properties
-  const elevationProperties = {
-    ...getContainerData(container, storeKeys.ELEVATION_SETTNGS)
-  }
+  const elevationProperties = getContainerData(container, storeKeys.ELEVATION_SETTNGS) || UI_DEFAULTS
   // show the html ui
   figma.showUI(__html__, {
     width: 300,

@@ -7,10 +7,13 @@ import createContainer from './createContainer'
 const ELEVATION_LAYER_NAME = 'Elevation'
 
 export default (figma, container, data) => {
+  const focusNodes: SceneNode[] = []
+  let newContainer = false
   // add new node
   if (!container) {
     container = createContainer()
     figma.currentPage.appendChild(container)
+    newContainer = true
   }
   // remove children nodes
   else {
@@ -24,13 +27,16 @@ export default (figma, container, data) => {
     const previewElements = createPreviewElement(i, ELEVATION_LAYER_NAME, elevation)
     // append to container
     container.appendChild(previewElements)
-    // nodes.push(shadowRepresentation)
+    focusNodes.push(previewElements)
     // create styles
     createStyles(i, elevation, data.createStyles)
   }
+  // zoom to container if new
+  if (newContainer === true) {
+    figma.viewport.scrollAndZoomIntoView(focusNodes)
+  }
   // append & select
   figma.currentPage.selection = [container]
-  figma.viewport.scrollAndZoomIntoView([container])
   // elevation settings
   setContainerData(container, storeKeys.ELEVATION_SETTNGS, data)
 }

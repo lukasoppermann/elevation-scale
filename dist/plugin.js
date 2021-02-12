@@ -112,7 +112,7 @@
                 y: parseValue_1.default(layer.y, index)
             },
             spread: parseValue_1.default(layer.spread, index),
-            radius: parseValue_1.default(layer.blur, index),
+            radius: parseValue_1.default(layer.radius, index),
             // defaults
             blendMode: 'NORMAL',
             visible: true
@@ -151,10 +151,13 @@
         createContainer_1 = __importDefault(createContainer_1);
         const ELEVATION_LAYER_NAME = 'Elevation';
         exports.default = (figma, container, data) => {
+            const focusNodes = [];
+            let newContainer = false;
             // add new node
             if (!container) {
                 container = createContainer_1.default();
                 figma.currentPage.appendChild(container);
+                newContainer = true;
             }
             // remove children nodes
             else {
@@ -167,13 +170,16 @@
                 const previewElements = createPreviewElement_1.default(i, ELEVATION_LAYER_NAME, elevation);
                 // append to container
                 container.appendChild(previewElements);
-                // nodes.push(shadowRepresentation)
+                focusNodes.push(previewElements);
                 // create styles
                 createStyles_1.default(i, elevation, data.createStyles);
             }
+            // zoom to container if new
+            if (newContainer === true) {
+                figma.viewport.scrollAndZoomIntoView(focusNodes);
+            }
             // append & select
             figma.currentPage.selection = [container];
-            figma.viewport.scrollAndZoomIntoView([container]);
             // elevation settings
             containerStore_1.setContainerData(container, containerStore_1.storeKeys.ELEVATION_SETTNGS, data);
         };
@@ -199,12 +205,25 @@
             LAYER_SIZE: 40,
             BASE_SIZE: 450
         };
+        const UI_DEFAULTS = {
+            count: 5,
+            createStyles: false,
+            elevationLayers: [{
+                    type: 'dropshadow',
+                    color: '000000',
+                    opacity: '10 + #',
+                    x: 0,
+                    y: '0.5 * #',
+                    spread: '2 * #',
+                    radius: '#'
+                }]
+        };
         exports.default = (figma, container) => {
             // if selection:
             // -> count layers
             // resize height
             // prepare properties
-            const elevationProperties = Object.assign({}, containerStore_3.getContainerData(container, containerStore_3.storeKeys.ELEVATION_SETTNGS));
+            const elevationProperties = containerStore_3.getContainerData(container, containerStore_3.storeKeys.ELEVATION_SETTNGS) || UI_DEFAULTS;
             // show the html ui
             figma.showUI(__html__, {
                 width: 300,

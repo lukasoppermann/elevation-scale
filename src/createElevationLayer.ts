@@ -16,7 +16,7 @@ export default (index, layer) => ({
     y: parseValue(layer.y, index)
   },
   spread: parseValue(layer.spread, index),
-  radius: parseValue(layer.blur, index),
+  radius: parseValue(layer.radius, index),
   // defaults
   blendMode: 'NORMAL' as BlendMode,
   visible: true
