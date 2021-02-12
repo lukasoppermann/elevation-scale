@@ -165,7 +165,7 @@
             }
             for (let i = 0; i < data.count; i++) {
                 // get elevation
-                const elevation = data.shadowLayers.map(layer => createElevationLayer_1.default(i, layer));
+                const elevation = [...data.elevationLayer].map(layer => createElevationLayer_1.default(i, layer));
                 // create elements
                 const previewElements = createPreviewElement_1.default(i, ELEVATION_LAYER_NAME, elevation);
                 // append to container
@@ -208,7 +208,7 @@
         const UI_DEFAULTS = {
             count: 5,
             createStyles: false,
-            elevationLayers: [{
+            elevationLayer: [{
                     type: 'dropshadow',
                     color: '000000',
                     opacity: '10 + #',
@@ -219,21 +219,31 @@
                 }]
         };
         exports.default = (figma, container) => {
-            // if selection:
-            // -> count layers
-            // resize height
-            // prepare properties
-            const elevationProperties = containerStore_3.getContainerData(container, containerStore_3.storeKeys.ELEVATION_SETTNGS) || UI_DEFAULTS;
+            const UI_WIDTH = 300;
+            let UI_HEIGHT = 500;
             // show the html ui
             figma.showUI(__html__, {
-                width: 300,
-                height: SETTINGS.BASE_SIZE + SETTINGS.LAYER_SIZE * 1
+                width: UI_WIDTH,
+                height: UI_HEIGHT
             });
-            // send data to UI
-            figma.ui.postMessage(JSON.stringify({
-                type: 'updateProperties',
-                properties: elevationProperties
-            }));
+            // if selected container
+            if (container !== null) {
+                const elevationProperties = containerStore_3.getContainerData(container, containerStore_3.storeKeys.ELEVATION_SETTNGS) || UI_DEFAULTS;
+                UI_HEIGHT = SETTINGS.BASE_SIZE + SETTINGS.LAYER_SIZE * elevationProperties.elevationLayer.length;
+                // update UI size
+                figma.ui.resize(UI_WIDTH, UI_HEIGHT);
+                // send data to UI
+                figma.ui.postMessage(JSON.stringify({
+                    type: 'updateProperties',
+                    properties: elevationProperties
+                }));
+            }
+            // if no container is selected
+            else {
+                figma.ui.postMessage(JSON.stringify({
+                    type: 'emptyState'
+                }));
+            }
         };
     });
     define("src/index", ["require", "exports", "src/updateElevation", "src/getCurrentContainer", "src/refreshUi"], function (require, exports, updateElevation_1, getCurrentContainer_1, refreshUi_1) {

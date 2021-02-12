@@ -22,7 +22,7 @@ export default (figma, container, data) => {
 
   for (let i = 0; i < data.count; i++) {
     // get elevation
-    const elevation = data.shadowLayers.map(layer => createElevationLayer(i, layer))
+    const elevation = [...data.elevationLayer].map(layer => createElevationLayer(i, layer))
     // create elements
     const previewElements = createPreviewElement(i, ELEVATION_LAYER_NAME, elevation)
     // append to container

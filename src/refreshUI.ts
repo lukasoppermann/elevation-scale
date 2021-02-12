@@ -8,7 +8,7 @@ const SETTINGS = {
 const UI_DEFAULTS = {
   count: 5,
   createStyles: false,
-  elevationLayers: [{
+  elevationLayer: [{
     type: 'dropshadow',
     color: '000000',
     opacity: '10 + #',
@@ -20,19 +20,29 @@ const UI_DEFAULTS = {
 }
 
 export default (figma: PluginAPI, container: FrameNode | undefined) => {
-  // if selection:
-  // -> count layers
-  // resize height
-  // prepare properties
-  const elevationProperties = getContainerData(container, storeKeys.ELEVATION_SETTNGS) || UI_DEFAULTS
+  const UI_WIDTH = 300
+  let UI_HEIGHT = 500
   // show the html ui
   figma.showUI(__html__, {
-    width: 300,
-    height: SETTINGS.BASE_SIZE + SETTINGS.LAYER_SIZE * 1
+    width: UI_WIDTH,
+    height: UI_HEIGHT
   })
-  // send data to UI
-  figma.ui.postMessage(JSON.stringify({
-    type: 'updateProperties',
-    properties: elevationProperties
-  }))
+  // if selected container
+  if (container !== null) {
+    const elevationProperties = getContainerData(container, storeKeys.ELEVATION_SETTNGS) || UI_DEFAULTS
+    UI_HEIGHT = SETTINGS.BASE_SIZE + SETTINGS.LAYER_SIZE * elevationProperties.elevationLayer.length
+    // update UI size
+    figma.ui.resize(UI_WIDTH, UI_HEIGHT)
+    // send data to UI
+    figma.ui.postMessage(JSON.stringify({
+      type: 'updateProperties',
+      properties: elevationProperties
+    }))
+  }
+  // if no container is selected
+  else {
+    figma.ui.postMessage(JSON.stringify({
+      type: 'emptyState'
+    }))
+  }
 }

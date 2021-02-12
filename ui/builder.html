@@ -1,20 +1,32 @@
-<h2>Rectangle Creator</h2>
-<p>Count: <input data-property="count" value="5"></p>
-<div id="shadows">
-
-</div>
-<button id="add">Add Shadow</button>
-
-<div class="section">
-  <label><input type="checkbox" data-property="createStyles" />Create styles</label>
-</div>
-
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+<header>
+  <h2>Rectangle Creator</h2>
+  <div class="info">You can use a <span class="text-highlight">#</span> for the number on the scale (1, 2, 3).</div>
+</header>
+<main>
+  <!-- empty State -->
+  <section data-section="emptyState">
+    <p>Select an elevation scale</p>
+    <span>or</span>
+    <button>Create a new elevation scale</button>
+  </section>
+  <!-- elevation settings -->
+  <section data-section="elevationSettings">
+    <p>Count: <input data-property="count" value="5"></p>
+    <label><input type="checkbox" data-property="createStyles" />Create styles</label>
+    <div id="elevationLayers"></div>
+    <button id="add">Add Layer</button>
+  </section>
+</main>
 <footer>
-  <button id="create">Save</button>
-  <button id="cancel">Cancel</button>
+Help
 </footer>
 
-<template id="shadowTemplate">
+<template id="elevationLayerTemplate">
   <details class="shadow">
     <summary><input class="name" value="shadow"><button class="delete" data-action="deleteItem">🗑</button></summary>
     <div>Type: 
@@ -33,8 +45,10 @@
 </template>
 <script> 
 // selections
-const template = document.getElementById("shadowTemplate")
-const list = document.getElementById("shadows")
+const elevationLayerTemplate = document.getElementById("elevationLayerTemplate")
+const sectionElevationSettings = document.querySelector('[data-section="elevationSettings"]')
+const sectionEmptyState = document.querySelector('[data-section="emptyState"]')
+const list = document.getElementById("elevationLayers")
 const count = document.querySelector('[data-property="count"]')
 const createStyles = document.querySelector('[data-property="createStyles"]')
 // events
@@ -44,6 +58,8 @@ onmessage = ({data = undefined}) => {
     if (eventData.type === 'updateProperties') {
       updatePanel(eventData.properties)
     }
+    // toggle state
+    toggleEmptyState(eventData.type === 'emptyState')
   }
 }
 
@@ -53,6 +69,17 @@ const updatePanel = data => {
   data.elevationLayers.forEach(layer => {
     list.appendChild(createShadowLayer(layer))
   })
+}
+
+const toggleEmptyState = active => {
+  if (active === true) {
+    sectionEmptyState.classList.remove('hidden')
+    sectionElevationSettings.classList.add('hidden')
+  // hide emptyState 
+  } else {
+    sectionEmptyState.classList.add('hidden')
+    sectionElevationSettings.classList.remove('hidden')   
+  }
 }
 
 const getShadowLayerValues = shadowDetails => {
@@ -77,30 +104,25 @@ const getShadowLayerValues = shadowDetails => {
 
 const saveShadows = (list) => {
   // get data for each shadow layer
-  const shadowLayers = Array.from(list.querySelectorAll('details')).map(shadowDetails => getShadowLayerValues(shadowDetails))
+  const elevationLayers = Array.from(list.querySelectorAll('details')).map(shadowDetails => getShadowLayerValues(shadowDetails))
   // send data
-  console.log('createStyles', createStyles.checked, createStyles.value)
   parent.postMessage({ pluginMessage: 
     { 
       type: 'saveShadows',
       count: count.value,
       createStyles: createStyles.checked,
-      shadowLayers
+      elevationLayers
     } 
   }, '*')
 }
 
-document.getElementById('create').onclick = () => {
-  saveShadows(list)
-}
-
-document.getElementById('cancel').onclick = () => {
-  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
-}
+// document.getElementById('create').onclick = () => {
+//   saveShadows(list)
+// }
 
 const createShadowLayer = values => {
   // get clone
-  const clone = template.content.cloneNode(true)
+  const clone = elevationLayerTemplate.content.cloneNode(true)
   // replace values
   for (const key in values) {
     console.log(key)
