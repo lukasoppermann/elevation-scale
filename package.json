@@ -1,11 +1,11 @@
 {
-  "name": "shadow-scale",
+  "name": "elevation-scale",
   "version": "1.0.0",
-  "description": "Create a systematic shadows",
-  "main": "code.js",
+  "description": "Create an elevation system",
+  "main": "dist/plugin.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukasoppermann/shadow-scale.git"
+    "url": "https://github.com/lukasoppermann/elevation-scale.git"
   },
   "scripts": {
     "start": "npm run test && npm run build-watch",
