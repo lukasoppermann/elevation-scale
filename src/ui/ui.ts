@@ -1,58 +1,12 @@
-<style>
-  .hidden {
-    display: none;
-  }
-</style>
-<header>
-  <h2>Rectangle Creator</h2>
-  <div class="info">You can use a <span class="text-highlight">#</span> for the number on the scale (1, 2, 3).</div>
-</header>
-<main>
-  <!-- empty State -->
-  <section data-section="emptyState">
-    <p>Select an elevation scale</p>
-    <span>or</span>
-    <button id="createScale">Create a new elevation scale</button>
-  </section>
-  <!-- elevation settings -->
-  <section data-section="elevationSettings">
-    <p>Count: <input data-property="count" value="5"></p>
-    <label><input type="checkbox" data-property="createStyles" />Create styles</label>
-    <div id="elevationLayers"></div>
-    <button id="add">Add Layer</button>
-  </section>
-</main>
-<footer>
-Help
-</footer>
-
-<template id="elevationLayerTemplate">
-  <details class="shadow">
-    <summary><input class="name" value="shadow"><button class="delete" data-action="deleteItem">🗑</button></summary>
-    <div>Type: 
-      <select data-property="type">
-        <option value="dropshadow">Dropshadow</option>
-        <option value="innershadow">Innershadow</option>
-      </select>
-    </div>
-    <p>X: <input data-property="x" value="0"></p>
-    <p>Y: <input data-property="y" value="0"></p>
-    <p>Blur: <input data-property="radius" value="0"></p>
-    <p>Spread: <input data-property="spread" value="0"></p>
-    <p>Color: <input data-property="color" value="#000000"></p>
-    <p>Opacity: <input data-property="opacity" value="10"></p>
-  </details>
-</template>
-<script> 
 // selections
-const elevationLayerTemplate = document.getElementById("elevationLayerTemplate")
+const elevationLayerTemplate = document.getElementById('elevationLayerTemplate')
 const sectionElevationSettings = document.querySelector('[data-section="elevationSettings"]')
 const sectionEmptyState = document.querySelector('[data-section="emptyState"]')
-const list = document.getElementById("elevationLayers")
+const list = document.getElementById('elevationLayers')
 const count = document.querySelector('[data-property="count"]')
 const createStyles = document.querySelector('[data-property="createStyles"]')
 // events
-onmessage = ({data = undefined}) => {
+onmessage = ({ data = undefined }) => {
   if (data !== undefined && data.pluginMessage !== undefined) {
     const eventData = JSON.parse(data.pluginMessage)
     if (eventData.type === 'updateProperties') {
@@ -63,22 +17,22 @@ onmessage = ({data = undefined}) => {
   }
 }
 
-// const updatePanel = data => {
-//   count.value = data.count
-//   createStyles.checked = (data.createStyles === true)
-//   data.elevationLayer.forEach(layer => {
-//     list.appendChild(createShadowLayer(layer))
-//   })
-// }
+const updatePanel = data => {
+  count.value = data.count
+  createStyles.checked = (data.createStyles === true)
+  data.elevationLayer.forEach(layer => {
+    list.appendChild(createShadowLayer(layer))
+  })
+}
 
 const toggleEmptyState = active => {
   if (active === true) {
     sectionEmptyState.classList.remove('hidden')
     sectionElevationSettings.classList.add('hidden')
-  // hide emptyState 
+  // hide emptyState
   } else {
     sectionEmptyState.classList.add('hidden')
-    sectionElevationSettings.classList.remove('hidden')   
+    sectionElevationSettings.classList.remove('hidden')
   }
 }
 
@@ -93,7 +47,7 @@ const getShadowLayerValues = shadowDetails => {
     'opacity'
   ]
 
-  let propertyValues = {}
+  const propertyValues = {}
 
   properties.forEach(property => {
     propertyValues[property] = shadowDetails.querySelector(`[data-property="${property}"]`).value
@@ -106,13 +60,14 @@ const saveShadows = (list) => {
   // get data for each shadow layer
   const elevationLayers = Array.from(list.querySelectorAll('details')).map(shadowDetails => getShadowLayerValues(shadowDetails))
   // send data
-  parent.postMessage({ pluginMessage: 
-    { 
+  parent.postMessage({
+    pluginMessage:
+    {
       type: 'saveShadows',
       count: count.value,
       createStyles: createStyles.checked,
       elevationLayers
-    } 
+    }
   }, '*')
 }
 // create scale
@@ -136,14 +91,10 @@ document.getElementById('add').onclick = () => {
 }
 
 list.onclick = (e) => {
-  if(e.target.dataset.action === 'deleteItem') {
+  if (e.target.dataset.action === 'deleteItem') {
     e.target.parentNode.parentNode.remove()
   }
 }
 
 // append new shadowLayer to list
 // list.appendChild(createShadowLayer())
-
-</script>
-
-<!-- https://github.com/KaneCohen/tokenfield -->
