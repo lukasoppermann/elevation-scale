@@ -87,10 +87,13 @@
         const placeholders = {
             INDEX: '#'
         };
-        exports.default = (valueString, index) => {
+        exports.default = (value, index) => {
             // replace placeholders in string
-            const preparedString = valueString.replace(placeholders.INDEX, index);
-            return parseInt(eval(preparedString), 10);
+            if (typeof value === 'string') {
+                value = value.replace(placeholders.INDEX, index);
+            }
+            // eval and parse int
+            return parseInt(eval(value), 10);
         };
     });
     define("src/createElevationLayer", ["require", "exports", "src/parseValue"], function (require, exports, parseValue_1) {
@@ -98,25 +101,27 @@
         Object.defineProperty(exports, "__esModule", { value: true });
         parseValue_1 = __importDefault(parseValue_1);
         const allowedEffectType = ['DROP_SHADOW', 'INNER_SHADOW'];
-        exports.default = (index, layer) => ({
-            // define elevation
-            type: allowedEffectType.includes(layer.effectType) ? layer.effectType : 'DROP_SHADOW',
-            color: {
-                r: 0,
-                g: 0,
-                b: 0,
-                a: parseValue_1.default(layer.opacity, index) / 100 // in percent
-            },
-            offset: {
-                x: parseValue_1.default(layer.x, index),
-                y: parseValue_1.default(layer.y, index)
-            },
-            spread: parseValue_1.default(layer.spread, index),
-            radius: parseValue_1.default(layer.radius, index),
-            // defaults
-            blendMode: 'NORMAL',
-            visible: true
-        });
+        exports.default = (index, layer) => {
+            return {
+                // define elevation
+                type: allowedEffectType.includes(layer.type) ? layer.type : 'DROP_SHADOW',
+                color: {
+                    r: 0,
+                    g: 0,
+                    b: 0,
+                    a: parseValue_1.default(layer.opacity, index) / 100 // in percent
+                },
+                offset: {
+                    x: parseValue_1.default(layer.x, index),
+                    y: parseValue_1.default(layer.y, index)
+                },
+                spread: parseValue_1.default(layer.spread, index),
+                radius: parseValue_1.default(layer.radius, index),
+                // defaults
+                blendMode: 'NORMAL',
+                visible: true
+            };
+        };
     });
     define("src/createContainer", ["require", "exports"], function (require, exports) {
         "use strict";
@@ -142,7 +147,25 @@
             return container;
         };
     });
-    define("src/updateElevation", ["require", "exports", "src/createStyles", "src/containerStore", "src/createPreviewElement", "src/createElevationLayer", "src/createContainer"], function (require, exports, createStyles_1, containerStore_1, createPreviewElement_1, createElevationLayer_1, createContainer_1) {
+    define("src/defaults", ["require", "exports"], function (require, exports) {
+        "use strict";
+        Object.defineProperty(exports, "__esModule", { value: true });
+        exports.ELEVATION_DEFAULTS = void 0;
+        exports.ELEVATION_DEFAULTS = {
+            count: 5,
+            createStyles: false,
+            elevationLayer: [{
+                    type: 'dropshadow',
+                    color: '000000',
+                    opacity: '10 + #',
+                    x: 0,
+                    y: '0.5 * #',
+                    spread: '2 * #',
+                    radius: '#'
+                }]
+        };
+    });
+    define("src/updateElevation", ["require", "exports", "src/createStyles", "src/containerStore", "src/createPreviewElement", "src/createElevationLayer", "src/createContainer", "src/defaults"], function (require, exports, createStyles_1, containerStore_1, createPreviewElement_1, createElevationLayer_1, createContainer_1, defaults_1) {
         "use strict";
         Object.defineProperty(exports, "__esModule", { value: true });
         createStyles_1 = __importDefault(createStyles_1);
@@ -158,6 +181,7 @@
                 container = createContainer_1.default();
                 figma.currentPage.appendChild(container);
                 newContainer = true;
+                data = defaults_1.ELEVATION_DEFAULTS;
             }
             // remove children nodes
             else {
@@ -165,7 +189,9 @@
             }
             for (let i = 0; i < data.count; i++) {
                 // get elevation
-                const elevation = [...data.elevationLayer].map(layer => createElevationLayer_1.default(i, layer));
+                const elevation = [...data.elevationLayer].map(layer => {
+                    return createElevationLayer_1.default(i, layer);
+                });
                 // create elements
                 const previewElements = createPreviewElement_1.default(i, ELEVATION_LAYER_NAME, elevation);
                 // append to container
@@ -205,19 +231,6 @@
             LAYER_SIZE: 40,
             BASE_SIZE: 450
         };
-        const UI_DEFAULTS = {
-            count: 5,
-            createStyles: false,
-            elevationLayer: [{
-                    type: 'dropshadow',
-                    color: '000000',
-                    opacity: '10 + #',
-                    x: 0,
-                    y: '0.5 * #',
-                    spread: '2 * #',
-                    radius: '#'
-                }]
-        };
         exports.default = (figma, container) => {
             const UI_WIDTH = 300;
             let UI_HEIGHT = 500;
@@ -228,7 +241,7 @@
             });
             // if selected container
             if (container !== null) {
-                const elevationProperties = containerStore_3.getContainerData(container, containerStore_3.storeKeys.ELEVATION_SETTNGS) || UI_DEFAULTS;
+                const elevationProperties = containerStore_3.getContainerData(container, containerStore_3.storeKeys.ELEVATION_SETTNGS);
                 UI_HEIGHT = SETTINGS.BASE_SIZE + SETTINGS.LAYER_SIZE * elevationProperties.elevationLayer.length;
                 // update UI size
                 figma.ui.resize(UI_WIDTH, UI_HEIGHT);
@@ -261,6 +274,9 @@
         refreshUi_1.default(figma, currentContainer);
         // run code on commands from UI
         figma.ui.onmessage = msg => {
+            if (msg.type === 'createScale') {
+                updateElevation_1.default(figma, null, null);
+            }
             if (msg.type === 'saveShadows') {
                 updateElevation_1.default(figma, currentContainer, msg);
             }
@@ -277,6 +293,13 @@
             }
         });
     });
+    const updatePanel = (data, count, createStyles, list, createShadowLayer) => {
+        count.value = data.count;
+        createStyles.checked = (data.createStyles === true);
+        data.elevationLayer.forEach(layer => {
+            list.appendChild(createShadowLayer(layer));
+        });
+    };
     
     'marker:resolver';
 

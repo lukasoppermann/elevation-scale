@@ -1,11 +1,11 @@
 {
-  "name": "shadow-scale",
+  "name": "elevation-scale",
   "version": "1.0.0",
-  "description": "Create a systematic shadows",
-  "main": "code.js",
+  "description": "Create an elevation system",
+  "main": "dist/plugin.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukasoppermann/shadow-scale.git"
+    "url": "https://github.com/lukasoppermann/elevation-scale.git"
   },
   "scripts": {
     "start": "npm run test && npm run build-watch",
@@ -23,19 +23,24 @@
     "@figma/plugin-typings": "^1.19.0",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
+    "css-loader": "^5.0.2",
     "eslint-plugin-typescript": "^0.14.0",
+    "figma-plugin-ds": "^0.1.8",
+    "html-webpack-inline-source-plugin": "0.0.10",
+    "html-webpack-plugin": "^3.2.0",
     "jest": "^26.6.3",
     "jest-preset-typescript": "^1.2.0",
     "replace-in-files-cli": "^1.0.0",
     "snazzy": "^9.0.0",
     "standardx": "^7.0.0",
+    "style-loader": "^2.0.0",
     "ts-jest": "^26.5.0",
-    "typescript-bundle": "^1.0.17"
-  },
-  "dependencies": {
-    "@types/node": "^14.14.22",
-    "figma-plugin-ds": "^0.1.8",
-    "typescript": "^4.1.3"
+    "ts-loader": "^8.0.17",
+    "typescript": "^4.1.5",
+    "typescript-bundle": "^1.0.17",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",

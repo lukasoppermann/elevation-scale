@@ -1,7 +1,7 @@
 {
-  "name": "Shadow Scale",
+  "name": "Elevation Scale",
   "id": "940989130927509964",
   "api": "1.0.0",
   "main": "dist/plugin.js",
-  "ui": "ui/builder.html"
+  "ui": "dist/ui.html"
 }
