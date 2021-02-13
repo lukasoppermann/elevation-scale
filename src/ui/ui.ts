@@ -1,8 +1,13 @@
+// styling
+import './css/ui.css'
+// modules
+import postUpdateElevation from './modules/postUpdateElevation'
+
 // selections
 const elevationLayerTemplate = document.getElementById('elevationLayerTemplate') as HTMLTemplateElement
 const sectionElevationSettings = document.querySelector('[data-section="elevationSettings"]')
 const sectionEmptyState = document.querySelector('[data-section="emptyState"]')
-const list = document.getElementById('elevationLayers')
+const list = document.getElementById('elevationLayer')
 const count = document.querySelector('[data-property="count"]') as HTMLInputElement
 const createStyles = document.querySelector('[data-property="createStyles"]') as HTMLInputElement
 // events
@@ -36,40 +41,9 @@ const toggleEmptyState = active => {
   }
 }
 
-const getShadowLayerValues = shadowDetails => {
-  const properties = [
-    'type',
-    'x',
-    'y',
-    'radius',
-    'spread',
-    'color',
-    'opacity'
-  ]
-
-  const propertyValues = {}
-
-  properties.forEach(property => {
-    propertyValues[property] = shadowDetails.querySelector(`[data-property="${property}"]`).value
-  })
-  // return values
-  return propertyValues
-}
-
-const saveShadows = (list) => {
-  // get data for each shadow layer
-  const elevationLayers = Array.from(list.querySelectorAll('details')).map(shadowDetails => getShadowLayerValues(shadowDetails))
-  // send data
-  parent.postMessage({
-    pluginMessage:
-    {
-      type: 'saveShadows',
-      count: count.value,
-      createStyles: createStyles.checked,
-      elevationLayers
-    }
-  }, '*')
-}
+document.addEventListener('keydown', () => {
+  postUpdateElevation(list, count.value, createStyles.checked)
+})
 // create scale
 document.getElementById('createScale').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'createScale' } }, '*')
@@ -95,6 +69,3 @@ list.onclick = (e) => {
     ((e.target as HTMLElement).parentNode.parentNode as HTMLElement).remove()
   }
 }
-
-// append new shadowLayer to list
-// list.appendChild(createShadowLayer())

@@ -19,6 +19,7 @@ export default (figma, container, data) => {
   }
   // remove children nodes
   else {
+    data.count = parseInt(data.count)
     container.children.forEach(child => child.remove())
   }
 

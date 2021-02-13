@@ -8,5 +8,13 @@ export default (value, index) => {
     value = value.replace(placeholders.INDEX, index)
   }
   // eval and parse int
-  return parseInt(eval(value), 10)
+  try {
+    value = parseInt(eval(value), 10)
+    if (!isNaN(value)) {
+      return value
+    }
+  } catch (e) {
+    console.log(e)
+  }
+  return 0
 }
