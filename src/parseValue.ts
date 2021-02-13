@@ -2,8 +2,11 @@ const placeholders = {
   INDEX: '#'
 }
 
-export default (valueString, index) => {
+export default (value, index) => {
   // replace placeholders in string
-  const preparedString = valueString.replace(placeholders.INDEX, index)
-  return parseInt(eval(preparedString), 10)
+  if (typeof value === 'string') {
+    value = value.replace(placeholders.INDEX, index)
+  }
+  // eval and parse int
+  return parseInt(eval(value), 10)
 }

@@ -3,6 +3,7 @@ import { setContainerData, storeKeys } from './containerStore'
 import createPreviewElement from './createPreviewElement'
 import createElevationLayer from './createElevationLayer'
 import createContainer from './createContainer'
+import { ELEVATION_DEFAULTS } from './defaults'
 
 const ELEVATION_LAYER_NAME = 'Elevation'
 
@@ -14,6 +15,7 @@ export default (figma, container, data) => {
     container = createContainer()
     figma.currentPage.appendChild(container)
     newContainer = true
+    data = ELEVATION_DEFAULTS
   }
   // remove children nodes
   else {
@@ -22,7 +24,9 @@ export default (figma, container, data) => {
 
   for (let i = 0; i < data.count; i++) {
     // get elevation
-    const elevation = [...data.elevationLayer].map(layer => createElevationLayer(i, layer))
+    const elevation = [...data.elevationLayer].map(layer => {
+      return createElevationLayer(i, layer)
+    })
     // create elements
     const previewElements = createPreviewElement(i, ELEVATION_LAYER_NAME, elevation)
     // append to container

@@ -10,6 +10,10 @@ let currentContainer = getCurrentContainer(figma)
 refreshUI(figma, currentContainer)
 // run code on commands from UI
 figma.ui.onmessage = msg => {
+  if (msg.type === 'createScale') {
+    updateElevation(figma, null, null)
+  }
+
   if (msg.type === 'saveShadows') {
     updateElevation(figma, currentContainer, msg)
   }

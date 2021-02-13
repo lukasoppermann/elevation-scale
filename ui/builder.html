@@ -12,7 +12,7 @@
   <section data-section="emptyState">
     <p>Select an elevation scale</p>
     <span>or</span>
-    <button>Create a new elevation scale</button>
+    <button id="createScale">Create a new elevation scale</button>
   </section>
   <!-- elevation settings -->
   <section data-section="elevationSettings">
@@ -63,13 +63,13 @@ onmessage = ({data = undefined}) => {
   }
 }
 
-const updatePanel = data => {
-  count.value = data.count
-  createStyles.checked = (data.createStyles === true)
-  data.elevationLayers.forEach(layer => {
-    list.appendChild(createShadowLayer(layer))
-  })
-}
+// const updatePanel = data => {
+//   count.value = data.count
+//   createStyles.checked = (data.createStyles === true)
+//   data.elevationLayer.forEach(layer => {
+//     list.appendChild(createShadowLayer(layer))
+//   })
+// }
 
 const toggleEmptyState = active => {
   if (active === true) {
@@ -115,17 +115,16 @@ const saveShadows = (list) => {
     } 
   }, '*')
 }
-
-// document.getElementById('create').onclick = () => {
-//   saveShadows(list)
-// }
+// create scale
+document.getElementById('createScale').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'createScale' } }, '*')
+}
 
 const createShadowLayer = values => {
   // get clone
   const clone = elevationLayerTemplate.content.cloneNode(true)
   // replace values
   for (const key in values) {
-    console.log(key)
     clone.querySelector(`[data-property="${key}"]`).value = values[key]
   }
   // return layer
