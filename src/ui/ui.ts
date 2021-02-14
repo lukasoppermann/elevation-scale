@@ -1,13 +1,17 @@
 // styling
+import './css/variables.css'
 import './css/ui.css'
 // modules
 import postUpdateElevation from './modules/postUpdateElevation'
+import toggleElevationLayer from './modules/toggleElevationLayer'
+import createElevationLayer from './modules/createElevationLayer'
+import addElevationLayer from './modules/addElevationLayer'
 
 // selections
-const elevationLayerTemplate = document.getElementById('elevationLayerTemplate') as HTMLTemplateElement
 const sectionElevationSettings = document.querySelector('[data-section="elevationSettings"]')
 const sectionEmptyState = document.querySelector('[data-section="emptyState"]')
-const list = document.getElementById('elevationLayer')
+const list = document.querySelector('[data-id="elevationLayerList"]') as HTMLElement
+const form = document.querySelector('form')
 const count = document.querySelector('[data-property="count"]') as HTMLInputElement
 const createStyles = document.querySelector('[data-property="createStyles"]') as HTMLInputElement
 // events
@@ -26,8 +30,9 @@ const updatePanel = data => {
   count.value = data.count
   createStyles.checked = (data.createStyles === true)
   data.elevationLayer.forEach(layer => {
-    list.appendChild(createShadowLayer(layer))
+    list.appendChild(createElevationLayer(layer))
   })
+  toggleElevationLayer(list.querySelector('[data-id="elevationLayer"]'))
 }
 
 const toggleEmptyState = active => {
@@ -41,31 +46,27 @@ const toggleEmptyState = active => {
   }
 }
 
-document.addEventListener('keydown', () => {
-  postUpdateElevation(list, count.value, createStyles.checked)
+document.addEventListener('keyup', () => {
+  // if form is valid
+  if (form.checkValidity() === true) {
+    postUpdateElevation(list, count.value, createStyles.checked)
+  }
 })
 // create scale
 document.getElementById('createScale').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'createScale' } }, '*')
 }
 
-const createShadowLayer = (values = {}) => {
-  // get clone
-  const clone = elevationLayerTemplate.content.cloneNode(true) as HTMLElement
-  // replace values
-  for (const key in values) {
-    (clone.querySelector(`[data-property="${key}"]`) as HTMLInputElement).value = values[key]
-  }
-  // return layer
-  return clone
-}
-
 document.getElementById('add').onclick = () => {
-  list.appendChild(createShadowLayer())
+  addElevationLayer(list)
 }
+// submit form
 
-list.onclick = (e) => {
-  if ((e.target as HTMLElement).dataset.action === 'deleteItem') {
-    ((e.target as HTMLElement).parentNode.parentNode as HTMLElement).remove()
+form.addEventListener('submit', event => {
+  // dont submit
+  event.preventDefault()
+  // update if valid form
+  if (form.checkValidity() === true) {
+    postUpdateElevation(list, count.value, createStyles.checked)
   }
-}
+})

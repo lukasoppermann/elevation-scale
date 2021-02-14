@@ -2,7 +2,7 @@
   <h2>Rectangle Creator</h2>
   <div class="info">You can use a <span class="text-highlight">#</span> for the number on the scale (1, 2, 3).</div>
 </header>
-<main>
+<form>
   <!-- empty State -->
   <section data-section="emptyState">
     <p>Select an elevation scale</p>
@@ -13,17 +13,17 @@
   <section data-section="elevationSettings">
     <p>Count: <input data-property="count" value="5"></p>
     <label><input type="checkbox" data-property="createStyles" />Create styles</label>
-    <div id="elevationLayer"></div>
-    <button id="add">Add Layer</button>
+    <div data-id="elevationLayerList"></div>
+    <button id="add" type="button">Add Layer</button>
   </section>
-</main>
+</form>
 <footer>
 Help
 </footer>
 
-<template id="elevationLayerTemplate">
+<template data-id="elevationLayerTemplate">
   <details class="shadow">
-    <summary><input class="name" value="shadow"><button class="delete" data-action="deleteItem">🗑</button></summary>
+    <summary><input data-property="name" class="elevationLayerName" value="shadow"><button class="delete" data-id="deleteButton" type="submit">🗑</button></summary>
     <div>Type: 
       <select data-property="type">
         <option value="dropshadow">Dropshadow</option>
@@ -34,7 +34,7 @@ Help
     <p>Y: <input data-property="y" value="0"></p>
     <p>Blur: <input data-property="radius" value="0"></p>
     <p>Spread: <input data-property="spread" value="0"></p>
-    <p>Color: <input data-property="color" value="#000000"></p>
+    <p>Color: <input required pattern="^[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}$" maxlength="6" data-property="color" value="000000" placeholder="000000"></p>
     <p>Opacity: <input data-property="opacity" value="10"></p>
   </details>
 </template>
