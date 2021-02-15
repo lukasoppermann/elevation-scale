@@ -1,4 +1,5 @@
 import config from './config'
+import toggleDeleteButton from './toggleDeleteButton'
 import toggleElevationLayer from './toggleElevationLayer'
 
 export default (values = {}) => {
@@ -22,10 +23,19 @@ export default (values = {}) => {
   // Delete layer
   clone.querySelector('[data-id="deleteButton"]').addEventListener('click', (e) => {
     e.preventDefault()
-    self.remove()
-    console.log('toggle first item in list')
-    console.log('if last item, add a new one so that the list is never empty')
-    // toggleElevationLayer()
+    const parent = self.parentNode
+    // only allow deletion if not last item
+    if (parent.querySelectorAll(`[data-id="${config.ids.elevationLayer}"]`).length > 1) {
+      self.remove()
+    }
+    // get all layers
+    const layers = parent.querySelectorAll(`[data-id="${config.ids.elevationLayer}"]`) as NodeListOf<HTMLDetailsElement>
+    // disable delete if only one
+    if (layers.length === 1) {
+      toggleDeleteButton(layers[0], false)
+    }
+    // { console.log('toggle first item in list') }
+    toggleElevationLayer(layers[0])
   })
   // return layer
   return clone

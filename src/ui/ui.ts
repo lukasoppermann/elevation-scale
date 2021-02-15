@@ -6,6 +6,7 @@ import postUpdateElevation from './modules/postUpdateElevation'
 import toggleElevationLayer from './modules/toggleElevationLayer'
 import createElevationLayer from './modules/createElevationLayer'
 import addElevationLayer from './modules/addElevationLayer'
+import toggleDeleteButton from './modules/toggleDeleteButton'
 
 // selections
 const sectionElevationSettings = document.querySelector('[data-section="elevationSettings"]')
@@ -32,6 +33,12 @@ const updatePanel = data => {
   data.elevationLayer.forEach(layer => {
     list.appendChild(createElevationLayer(layer))
   })
+  // disable delete if only one
+  const layers = list.querySelectorAll('[data-id="elevationLayer"]') as NodeListOf<HTMLDetailsElement>
+  if (layers.length === 1) {
+    toggleDeleteButton(layers[0], false)
+  }
+  //
   toggleElevationLayer(list.querySelector('[data-id="elevationLayer"]'))
 }
 
