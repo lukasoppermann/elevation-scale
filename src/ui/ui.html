@@ -1,24 +1,30 @@
-<header>
-  <h2>Rectangle Creator</h2>
-  <div class="info">You can use a <span class="text-highlight">#</span> for the number on the scale (1, 2, 3).</div>
-</header>
 <form>
   <!-- empty State -->
   <section data-section="emptyState">
     <p>Select an elevation scale</p>
     <span>or</span>
-    <button id="createScale">Create a new elevation scale</button>
+    <button id="createScale" class="button button--primary">Create a new elevation scale</button>
   </section>
   <!-- elevation settings -->
   <section data-section="elevationSettings">
-    <p>Count: <input data-property="count" value="5"></p>
-    <label><input type="checkbox" data-property="createStyles" />Create styles</label>
+    <div class="message-box">
+      <div class="message message--info">You can use a <span class="text-highlight">#</span> for the number on the scale (1, 2, 3).</div>
+    </div>
+    <div class="input input--with-text">
+      <div class="label">Steps</div>
+      <input class="input__field" data-property="steps" type="text" required pattern="^[1-9]{1}[0-9]{0,1}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
+    </div>
+    <div class="switch">
+      <input class="switch__toggle" type="checkbox" data-property="createStyles" id="createStyles">
+      <label class="switch__label" for="createStyles">Create styles</label>
+    </div>
+
     <div data-id="elevationLayerList"></div>
-    <button id="add" type="button">Add Layer</button>
+    <button id="add" type="button" class="button button--secondary">Add Layer</button>
   </section>
 </form>
 <footer>
-Help
+<a class="subtle" href="https://github.com/lukasoppermann/elevation-scale" target="_blank">Help</a>
 </footer>
 
 <template data-id="elevationLayerTemplate">
@@ -30,11 +36,29 @@ Help
         <option value="innershadow">Innershadow</option>
       </select>
     </div>
-    <p>X: <input data-property="x" value="0"></p>
-    <p>Y: <input data-property="y" value="0"></p>
-    <p>Blur: <input data-property="radius" value="0"></p>
-    <p>Spread: <input data-property="spread" value="0"></p>
-    <p>Color: <input required pattern="^[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}$" maxlength="6" data-property="color" value="000000" placeholder="000000"></p>
-    <p>Opacity: <input data-property="opacity" value="10"></p>
+    <div class="input input--with-text">
+      <div class="label">X</div>
+      <input class="input__field" data-property="x" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="x value" value=".25*#">
+    </div>
+    <div class="input input--with-text">
+      <div class="label">Y</div>
+      <input class="input__field" data-property="y" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="y value" value="1.5*#">
+    </div>
+    <div class="input input--with-text">
+      <div class="label">Blur</div>
+      <input class="input__field" data-property="radius" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="blur value" value="2*#">
+    </div>
+    <div class="input input--with-text">
+      <div class="label">Spread</div>
+      <input class="input__field" data-property="spread" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="spread value" value="0">
+    </div>
+    <div class="input input--with-text">
+      <div class="label">Color #</div>
+      <input class="input__field" data-property="color" type="text" required pattern="^[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}$" maxlength="6" value="000000" placeholder="000000">
+    </div>
+    <div class="input input--with-text">
+      <div class="label">Opacity</div>
+      <input class="input__field" data-property="opacity" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="opacity in %" value="10">
+    </div>
   </details>
 </template>

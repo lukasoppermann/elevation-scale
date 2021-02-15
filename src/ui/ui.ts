@@ -1,4 +1,6 @@
 // styling
+import 'figma-plugin-ds/dist/modules/selectMenu.js'
+import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
 // modules
@@ -13,7 +15,7 @@ const sectionElevationSettings = document.querySelector('[data-section="elevatio
 const sectionEmptyState = document.querySelector('[data-section="emptyState"]')
 const list = document.querySelector('[data-id="elevationLayerList"]') as HTMLElement
 const form = document.querySelector('form')
-const count = document.querySelector('[data-property="count"]') as HTMLInputElement
+const steps = document.querySelector('[data-property="steps"]') as HTMLInputElement
 const createStyles = document.querySelector('[data-property="createStyles"]') as HTMLInputElement
 // events
 onmessage = ({ data = undefined }) => {
@@ -28,7 +30,7 @@ onmessage = ({ data = undefined }) => {
 }
 
 const updatePanel = data => {
-  count.value = data.count
+  steps.value = data.steps
   createStyles.checked = (data.createStyles === true)
   data.elevationLayer.forEach(layer => {
     list.appendChild(createElevationLayer(layer))
@@ -56,7 +58,7 @@ const toggleEmptyState = active => {
 document.addEventListener('keyup', () => {
   // if form is valid
   if (form.checkValidity() === true) {
-    postUpdateElevation(list, count.value, createStyles.checked)
+    postUpdateElevation(list, steps.value, createStyles.checked)
   }
 })
 // create scale
@@ -74,6 +76,6 @@ form.addEventListener('submit', event => {
   event.preventDefault()
   // update if valid form
   if (form.checkValidity() === true) {
-    postUpdateElevation(list, count.value, createStyles.checked)
+    postUpdateElevation(list, steps.value, createStyles.checked)
   }
 })

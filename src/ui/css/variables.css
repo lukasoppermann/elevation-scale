@@ -3,4 +3,11 @@
   /* COLORS */
   /* Accent */
   --red: #f24822;
+  --dark-grey: var(--black8);
+  --light-grey: var(--black3);
+  /* Font sizes */
+  --font-size-xsmall: 12px;
+  --font-size-small: 13px;
+  --font-size-large: 14px;
+  --font-size-xlarge: 15px;
 }

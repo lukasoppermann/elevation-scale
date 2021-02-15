@@ -19,11 +19,11 @@ export default (figma, container, data) => {
   }
   // remove children nodes
   else {
-    data.count = parseInt(data.count)
+    data.steps = parseInt(data.steps)
     container.children.forEach(child => child.remove())
   }
 
-  for (let i = 0; i < data.count; i++) {
+  for (let i = 0; i < data.steps; i++) {
     // get elevation
     const elevation = [...data.elevationLayer].map(layer => {
       return createElevationLayer(i, layer)

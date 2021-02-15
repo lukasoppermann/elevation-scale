@@ -1,6 +1,6 @@
 import getElevationLayerValues from './getElevationLayerValues'
 
-export default (list, count, createStyles) => {
+export default (list, steps, createStyles) => {
   // get data for each shadow layer
   const elevationLayer = Array.from(list.querySelectorAll('details')).map(shadowDetails => getElevationLayerValues(shadowDetails))
   // send data
@@ -8,8 +8,8 @@ export default (list, count, createStyles) => {
     pluginMessage:
     {
       type: 'updateScale',
-      count: count,
-      createStyles: createStyles,
+      steps,
+      createStyles,
       elevationLayer
     }
   }, '*')

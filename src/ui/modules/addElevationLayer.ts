@@ -4,12 +4,12 @@ import toggleDeleteButton from './toggleDeleteButton'
 import toggleElevationLayer from './toggleElevationLayer'
 
 export default (list: HTMLElement) => {
-  const count = parseInt(list.dataset.count) || 0
-  const name = `Elevation layer ${count + 1}`
+  const steps = parseInt(list.dataset.steps) || 0
+  const name = `Elevation layer ${steps + 1}`
   const newElevationLayer = createElevationLayer({ name })
   // add to list
   list.appendChild(newElevationLayer)
-  list.dataset.count = `${count + 1}`
+  list.dataset.steps = `${steps + 1}`
   const layers = list.querySelectorAll(`[data-id=${config.ids.elevationLayer}]`) as NodeListOf<HTMLDetailsElement>
   const addedLayer = Array.from(layers).pop() as HTMLDetailsElement
   // enabled delete

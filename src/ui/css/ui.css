@@ -1,7 +1,50 @@
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+form {
+  flex-grow: 1;
+  padding: var(--size-xxsmall);
+}
+footer {
+  flex-grow: 0;
+  padding: var(--size-xxsmall) 0;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--size-xsmall);
+  border-top: 1px solid var(--silver);
+}
+footer a {
+  padding: 0 var(--size-xxsmall);
+  color: var(--dark-grey);
+  font-size: var(--font-size-small);
+}
 .hidden {
   display: none;
 }
-
+.flex-horizontal input {
+  min-width: 50px;
+}
+.input--with-text .input__field {
+  padding-left: 55px;
+}
+.input--with-text .label {
+  width: 55px;
+}
+.input--with-text-medium .input__field {
+  padding-left: 80px;
+}
+.input--with-text-medium .label {
+  width: 80px;
+}
+.input .label {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: var(--size-medium);
+  z-index: 1;
+}
 input:invalid {
   border: 1px solid var(--red);
   outline: 1px solid var(--red);

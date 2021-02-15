@@ -1,5 +1,5 @@
 export const ELEVATION_DEFAULTS = {
-  count: 5,
+  steps: 5,
   createStyles: false,
   elevationLayer: [{
     type: 'dropshadow',
