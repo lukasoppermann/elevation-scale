@@ -20,6 +20,11 @@ summary {
   background-color: var(--white-grey);
   display: flex;
 }
+summary:focus {
+  border: 0;
+  outline: 1px solid var(--blue);
+  outline-offset: -2px;
+}
 details[open] summary {
   margin-bottom: 4px;
 }
@@ -30,6 +35,10 @@ summary::-webkit-details-marker {display: none; }
 .elevationLayerName input {
   background: none;
   color: var(--dark-grey)
+}
+.elevationLayerName input:hover {
+  border-color: transparent;
+  background: rgba(0,0,0,.05);
 }
 .elevationLayerName .icon {
   opacity: .5;

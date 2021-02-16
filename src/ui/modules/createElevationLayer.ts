@@ -13,12 +13,16 @@ export default (values = {}) => {
     (clone.querySelector(`[data-property="${key}"]`) as HTMLInputElement).value = values[key]
   }
   // attach events
-  // Open Layer
+  // Open Layer via click
   self.addEventListener('click', (e) => {
     // if the item was closed
     if (self.open === false) {
       toggleElevationLayer(self, false)
     }
+  })
+  // Open Layer via focus
+  self.querySelector('[data-property="name"]').addEventListener('click', event => {
+    toggleElevationLayer(self, true)
   })
   // Delete layer
   clone.querySelector('[data-id="deleteButton"]').addEventListener('click', (e) => {
