@@ -28,14 +28,18 @@
 </footer>
 
 <template data-id="elevationLayerTemplate">
-  <details class="shadow">
-    <summary><input data-property="name" class="elevationLayerName" value="shadow"><button class="delete" data-id="deleteButton" type="submit">🗑</button></summary>
-    <div>Type: 
-      <select data-property="type">
-        <option value="dropshadow">Dropshadow</option>
-        <option value="innershadow">Innershadow</option>
-      </select>
-    </div>
+  <details>
+    <summary>
+      <div class="input input--with-icon elevationLayerName">
+        <div class="icon icon--effects"></div>
+        <input class="input__field" data-property="name" type="text" required placeholder="Name for the layer" value="Elevation">
+      </div>
+      <button class="button--delete icon-button" data-id="deleteButton" type="submit"><div class="icon icon--trash"></div></button>
+    </summary>
+    <select data-property="type" class="select-menu" id="elevationType">
+      <option value="dropshadow">Dropshadow</option>
+      <option value="innershadow">Innershadow</option>
+    </select>
     <div class="input input--with-text">
       <div class="label">X</div>
       <input class="input__field" data-property="x" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="x value" value=".25*#">

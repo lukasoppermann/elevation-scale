@@ -5,7 +5,41 @@ body {
 }
 form {
   flex-grow: 1;
-  padding: var(--size-xxsmall);
+}
+details {
+  border-top: 1px solid var(--light-grey);
+}
+details:last-child {
+  border-bottom: 1px solid var(--light-grey);
+}
+details > .input,
+details > .select-menu {
+  margin:0 4px 4px 4px;
+}
+summary {
+  background-color: var(--white-grey);
+  display: flex;
+}
+details[open] summary {
+  margin-bottom: 4px;
+}
+summary::-webkit-details-marker {display: none; }
+.elevationLayerName {
+  flex-grow: 1;
+}
+.elevationLayerName input {
+  background: none;
+  color: var(--dark-grey)
+}
+.elevationLayerName .icon {
+  opacity: .5;
+}
+.button--delete {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  width: 44px;
+  background: transparent;
 }
 footer {
   flex-grow: 0;
@@ -13,7 +47,7 @@ footer {
   display: flex;
   justify-content: flex-end;
   margin-top: var(--size-xsmall);
-  border-top: 1px solid var(--silver);
+  border-top: 1px solid var(--light-grey);
 }
 footer a {
   padding: 0 var(--size-xxsmall);

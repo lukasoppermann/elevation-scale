@@ -1,5 +1,5 @@
 // styling
-import 'figma-plugin-ds/dist/modules/selectMenu.js'
+import selectMenu from 'figma-plugin-ds/dist/modules/selectMenu.js'
 import 'figma-plugin-ds/dist/figma-plugin-ds.css'
 import './css/variables.css'
 import './css/ui.css'
@@ -35,6 +35,8 @@ const updatePanel = data => {
   data.elevationLayer.forEach(layer => {
     list.appendChild(createElevationLayer(layer))
   })
+  // enable select menus
+  selectMenu.init()
   // disable delete if only one
   const layers = list.querySelectorAll('[data-id="elevationLayer"]') as NodeListOf<HTMLDetailsElement>
   if (layers.length === 1) {

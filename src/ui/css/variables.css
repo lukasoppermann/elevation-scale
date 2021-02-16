@@ -4,7 +4,9 @@
   /* Accent */
   --red: #f24822;
   --dark-grey: var(--black8);
-  --light-grey: var(--black3);
+  --medium-grey: var(--black3);
+  --light-grey: var(--silver);
+  --white-grey: #f9f9f9;
   /* Font sizes */
   --font-size-xsmall: 12px;
   --font-size-small: 13px;
