@@ -6,7 +6,7 @@
     <button id="createScale" class="button button--primary">Create a new elevation scale</button>
   </section>
   <!-- elevation settings -->
-  <section data-section="elevationSettings">
+  <section data-section="elevationSettings" class="section--elevation-settings hidden">
     <div class="message-box">
       <div class="message message--info">You can use a <span class="text-highlight">#</span> for the number on the scale (1, 2, 3).</div>
     </div>
@@ -20,7 +20,7 @@
     </div>
 
     <div data-id="elevationLayerList"></div>
-    <button id="add" type="button" class="button button--secondary">Add Layer</button>
+    <button data-id="add" type="button" class="button--add button button--secondary">Add Layer</button>
   </section>
 </form>
 <footer>

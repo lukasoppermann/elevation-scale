@@ -4,6 +4,7 @@ body {
   flex-direction: column;
 }
 form {
+  display: flex;
   flex-grow: 1;
 }
 details {
@@ -50,6 +51,19 @@ summary::-webkit-details-marker {display: none; }
   width: 44px;
   background: transparent;
 }
+.button--delete .icon {
+  fill: var(--red);
+}
+.button--add {
+  margin: var(--size-xxsmall) 0 var(--size-xsmall);
+  align-self: center;
+  width: calc(100% - 2 * var(--size-xxsmall));
+  justify-content: center;
+}
+.section--elevation-settings {
+  display: flex;
+  flex-direction: column;
+}
 footer {
   flex-grow: 0;
   padding: var(--size-xxsmall) 0;
@@ -64,7 +78,7 @@ footer a {
   font-size: var(--font-size-small);
 }
 .hidden {
-  display: none;
+  display: none !important; 
 }
 .flex-horizontal input {
   min-width: 50px;

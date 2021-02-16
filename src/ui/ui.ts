@@ -9,6 +9,7 @@ import toggleElevationLayer from './modules/toggleElevationLayer'
 import createElevationLayer from './modules/createElevationLayer'
 import addElevationLayer from './modules/addElevationLayer'
 import toggleDeleteButton from './modules/toggleDeleteButton'
+import limitToAllowed from './modules/limitToAllowed'
 
 // selections
 const sectionElevationSettings = document.querySelector('[data-section="elevationSettings"]')
@@ -44,6 +45,8 @@ const updatePanel = data => {
   }
   //
   toggleElevationLayer(list.querySelector('[data-id="elevationLayer"]'))
+  // limit inputs
+  limitToAllowed()
 }
 
 const toggleEmptyState = active => {
@@ -68,9 +71,9 @@ document.getElementById('createScale').onclick = () => {
   parent.postMessage({ pluginMessage: { type: 'createScale' } }, '*')
 }
 
-document.getElementById('add').onclick = () => {
+document.querySelector('[data-id="add"').addEventListener('click', (event) => {
   addElevationLayer(list)
-}
+})
 // submit form
 
 form.addEventListener('submit', event => {
