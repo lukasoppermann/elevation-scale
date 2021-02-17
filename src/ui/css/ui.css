@@ -7,6 +7,7 @@ body {
 form {
   display: flex;
   flex-grow: 1;
+  margin-bottom: 0;
 }
 form section {
   width: 100%;
@@ -59,6 +60,10 @@ summary::-webkit-details-marker {display: none; }
   width: 44px;
   background: transparent;
 }
+.button {
+  text-align: center;
+  justify-content: center;
+}
 .button--delete .icon {
   fill: var(--red);
 }
@@ -75,6 +80,14 @@ summary::-webkit-details-marker {display: none; }
 .section--elevation-settings > .input,
 .section--elevation-settings > .switch {
   margin:0 var(--size-xxsmall) var(--size-xxsmall) var(--size-xxsmall);
+}
+.section--empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+.section--empty-state .message {
+  text-align: center;
 }
 footer {
   flex-grow: 0;
@@ -133,5 +146,8 @@ input:invalid {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 var(--size-xsmall) var(--size-xsmall) var(--size-xxsmall);
+  margin: 0 var(--size-xsmall) 0 var(--size-xxsmall);
+}
+.input--style-name{
+  margin-bottom: var(--size-xsmall);
 }

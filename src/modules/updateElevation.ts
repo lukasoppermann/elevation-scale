@@ -32,7 +32,10 @@ export default (figma, container, data) => {
     container.appendChild(previewElements)
     focusNodes.push(previewElements)
     // create styles
-    createStyles(i, elevation, data.createStyles)
+    if (data.createStyles === true) {
+      data.styles = createStyles(i, elevation) // data.styleName
+      console.log(data.styles)
+    }
   }
   // zoom to container if new
   if (newContainer === true) {

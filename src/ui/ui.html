@@ -1,8 +1,9 @@
 <form>
   <!-- empty State -->
-  <section data-section="emptyState">
-    <p>Select an elevation scale</p>
-    <span>or</span>
+  <section data-section="emptyState" class="section--empty-state">
+    <div class="message-box">
+      <div class="message message--info">Select an elevation scale.<br />or</div>
+    </div>
     <button id="createScale" class="button button--primary">Create a new elevation scale</button>
   </section>
   <!-- elevation settings -->
@@ -12,16 +13,18 @@
     </div>
     <div class="input input--with-text">
       <div class="label">Steps</div>
-      <input class="input__field" data-id="steps" type="text" required pattern="^[1-9]{1}[0-9]{0,1}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
+      <input class="input__field" data-id="steps" type="text" required pattern="^[0-9]{1,2}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
     </div>
     <div class="style-options">
       <div class="switch">
         <input class="switch__toggle" type="checkbox" data-id="createStyles" id="createStyles">
         <label class="switch__label" for="createStyles">Create styles</label>
       </div>
-      <button data-id="updateStyles" class="button button--primary">Update styles</button>
     </div>
-
+    <div class="input input--with-icon input--style-name">
+      <div class="icon icon--effects"></div>
+      <input class="input__field" data-id="styleName" type="text" placeholder="Style name">
+    </div>
     <div data-id="elevationLayerList"></div>
     <button data-id="add" type="button" class="button--add button button--secondary">Add Layer</button>
   </section>

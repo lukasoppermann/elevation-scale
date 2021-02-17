@@ -9,7 +9,6 @@ export default (values = {}) => {
   const clone = template.content.cloneNode(true) as DocumentFragment
   let self = clone.querySelector('details') as HTMLDetailsElement
   self.dataset.id = config.ids.elevationLayer
-  self.dataset.rand = `${Math.random()}`
   // replace values
   for (const key in values) {
     (clone.querySelector(`[data-property="${key}"]`) as HTMLInputElement).value = values[key]

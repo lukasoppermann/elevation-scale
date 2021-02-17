@@ -6,7 +6,6 @@ let currentContainer = getCurrentContainer(figma)
 /**
  * This is were the execution of the plugin starts
  */
-// initialize the ui
 refreshUI(figma, currentContainer)
 // run code on commands from UI
 figma.ui.onmessage = msg => {
