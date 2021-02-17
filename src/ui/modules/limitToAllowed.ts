@@ -1,6 +1,7 @@
-const allowedCharsRegex = /[#0-9\.\*+-\/]/i
 const allowedCodes = [
-  'Backspace'
+  'Backspace',
+  'ArrowLeft',
+  'ArrowRight'
 ]
 
 const restrictChars = event => {

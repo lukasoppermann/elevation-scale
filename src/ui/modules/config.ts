@@ -1,5 +1,8 @@
 export default {
   ids: {
-    elevationLayer: 'elevationLayer'
+    elevationLayer: 'elevationLayer',
+    elevationList: 'elevationLayerList',
+    steps: 'steps',
+    createStyles: 'createStyles'
   }
 }

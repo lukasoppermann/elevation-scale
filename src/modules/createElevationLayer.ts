@@ -6,6 +6,7 @@ const allowedEffectType = ['DROP_SHADOW', 'INNER_SHADOW']
 export default (index, layer) => {
   return {
   // define elevation
+    name: layer.name,
     type: allowedEffectType.includes(layer.type) ? layer.type : 'DROP_SHADOW' as 'DROP_SHADOW' | 'INNER_SHADOW',
     color: hexToRgba(layer.color, parseValue(layer.opacity, index)),
     offset: {

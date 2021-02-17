@@ -6,7 +6,7 @@ const SETTINGS = {
 }
 
 export default (figma: PluginAPI, container: FrameNode | undefined) => {
-  const UI_WIDTH = 300
+  const UI_WIDTH = 360
   let UI_HEIGHT = 500
   // show the html ui
   figma.showUI(__html__, {

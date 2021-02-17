@@ -1,14 +1,21 @@
 const SETTINGS = {
   WIDTH: 320,
   HEIGHT: 120,
-  RADIUS: 5
+  RADIUS: 5,
+  NAME: 'Elevation'
 }
 
-export default (index, name, elevation) => {
+export default (index, elevationLayers) => {
+  // remove name from layers
+  const effects = elevationLayers.map(layer => {
+    const { name, ...effects } = layer
+    // retuzrn effects only
+    return effects
+  })
   // create element
   const element = figma.createRectangle()
   // set name
-  element.name = `${name} ${index}`
+  element.name = `${SETTINGS.NAME} ${index}`
   // set size
   element.resizeWithoutConstraints(SETTINGS.WIDTH, SETTINGS.HEIGHT)
   // set radius
@@ -16,7 +23,7 @@ export default (index, name, elevation) => {
   // set fill to white
   element.fills = [{ type: 'SOLID', color: { r: 1, g: 1, b: 1 } }]
   // set elevation
-  element.effects = elevation
+  element.effects = effects
   // return
   return element
 }

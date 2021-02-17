@@ -9,7 +9,7 @@ export default (value, index) => {
   }
   // eval and parse int
   try {
-    value = parseInt(eval(value), 10)
+    value = parseFloat(eval(value))
     if (!isNaN(value)) {
       return value
     }

@@ -1,5 +1,6 @@
 export default shadowDetails => {
   const properties = [
+    'name',
     'type',
     'x',
     'y',

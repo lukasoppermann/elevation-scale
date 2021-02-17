@@ -12,11 +12,14 @@
     </div>
     <div class="input input--with-text">
       <div class="label">Steps</div>
-      <input class="input__field" data-property="steps" type="text" required pattern="^[1-9]{1}[0-9]{0,1}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
+      <input class="input__field" data-id="steps" type="text" required pattern="^[1-9]{1}[0-9]{0,1}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
     </div>
-    <div class="switch">
-      <input class="switch__toggle" type="checkbox" data-property="createStyles" id="createStyles">
-      <label class="switch__label" for="createStyles">Create styles</label>
+    <div class="style-options">
+      <div class="switch">
+        <input class="switch__toggle" type="checkbox" data-id="createStyles" id="createStyles">
+        <label class="switch__label" for="createStyles">Create styles</label>
+      </div>
+      <button data-id="updateStyles" class="button button--primary">Update styles</button>
     </div>
 
     <div data-id="elevationLayerList"></div>

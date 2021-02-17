@@ -5,8 +5,6 @@ import createElevationLayer from './createElevationLayer'
 import createContainer from './createContainer'
 import { ELEVATION_DEFAULTS } from './defaults'
 
-const ELEVATION_LAYER_NAME = 'Elevation'
-
 export default (figma, container, data) => {
   const focusNodes: SceneNode[] = []
   let newContainer = false
@@ -29,7 +27,7 @@ export default (figma, container, data) => {
       return createElevationLayer(i, layer)
     })
     // create elements
-    const previewElements = createPreviewElement(i, ELEVATION_LAYER_NAME, elevation)
+    const previewElements = createPreviewElement(i, elevation)
     // append to container
     container.appendChild(previewElements)
     focusNodes.push(previewElements)

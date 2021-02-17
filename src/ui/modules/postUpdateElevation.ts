@@ -1,8 +1,12 @@
+import config from './config'
 import getElevationLayerValues from './getElevationLayerValues'
 
-export default (list, steps, createStyles) => {
+export default (form) => {
+  const list = form.querySelector(`[data-id="${config.ids.elevationList}"]`) as HTMLElement
+  const steps = form.querySelector(`[data-id="${config.ids.steps}"]`).value
+  const createStyles = form.querySelector(`[data-id="${config.ids.createStyles}"]`).checked
   // get data for each shadow layer
-  const elevationLayer = Array.from(list.querySelectorAll('details')).map(shadowDetails => getElevationLayerValues(shadowDetails))
+  const elevationLayer = Array.from(list.querySelectorAll('details')).map(elevationDetails => getElevationLayerValues(elevationDetails))
   // send data
   parent.postMessage({
     pluginMessage:

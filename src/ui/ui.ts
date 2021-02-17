@@ -10,14 +10,15 @@ import createElevationLayer from './modules/createElevationLayer'
 import addElevationLayer from './modules/addElevationLayer'
 import toggleDeleteButton from './modules/toggleDeleteButton'
 import limitToAllowed from './modules/limitToAllowed'
+import config from './modules/config'
 
 // selections
 const sectionElevationSettings = document.querySelector('[data-section="elevationSettings"]')
 const sectionEmptyState = document.querySelector('[data-section="emptyState"]')
-const list = document.querySelector('[data-id="elevationLayerList"]') as HTMLElement
+const list = document.querySelector(`[data-id="${config.ids.elevationList}"]`) as HTMLElement
 const form = document.querySelector('form')
-const steps = document.querySelector('[data-property="steps"]') as HTMLInputElement
-const createStyles = document.querySelector('[data-property="createStyles"]') as HTMLInputElement
+const steps = document.querySelector(`[data-id="${config.ids.steps}"]`) as HTMLInputElement
+const createStyles = document.querySelector(`[data-id="${config.ids.createStyles}"]`) as HTMLInputElement
 // events
 onmessage = ({ data = undefined }) => {
   if (data !== undefined && data.pluginMessage !== undefined) {
@@ -63,7 +64,7 @@ const toggleEmptyState = active => {
 document.addEventListener('keyup', () => {
   // if form is valid
   if (form.checkValidity() === true) {
-    postUpdateElevation(list, steps.value, createStyles.checked)
+    postUpdateElevation(form)
   }
 })
 // create scale
@@ -73,6 +74,10 @@ document.getElementById('createScale').onclick = () => {
 
 document.querySelector('[data-id="add"').addEventListener('click', (event) => {
   addElevationLayer(list)
+  // update if valid form
+  if (form.checkValidity() === true) {
+    postUpdateElevation(form)
+  }
 })
 // submit form
 
@@ -81,6 +86,6 @@ form.addEventListener('submit', event => {
   event.preventDefault()
   // update if valid form
   if (form.checkValidity() === true) {
-    postUpdateElevation(list, steps.value, createStyles.checked)
+    postUpdateElevation(form)
   }
 })

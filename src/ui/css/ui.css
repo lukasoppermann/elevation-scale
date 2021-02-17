@@ -2,10 +2,14 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: stretch;
 }
 form {
   display: flex;
   flex-grow: 1;
+}
+form section {
+  width: 100%;
 }
 details {
   border-top: 1px solid var(--light-grey);
@@ -15,7 +19,7 @@ details:last-child {
 }
 details > .input,
 details > .select-menu {
-  margin:0 4px 4px 4px;
+  margin: 0 var(--size-xxsmall) var(--size-xxsmall) var(--size-xxsmall);
 }
 summary {
   background-color: var(--white-grey);
@@ -37,12 +41,16 @@ summary::-webkit-details-marker {display: none; }
   background: none;
   color: var(--dark-grey)
 }
+.elevationLayerName .input--with-icon .input__field {
+  padding-left: 40px;
+}
 .elevationLayerName input:hover {
   border-color: transparent;
   background: rgba(0,0,0,.05);
 }
 .elevationLayerName .icon {
   opacity: .5;
+  margin-left: var(--size-xxxsmall);
 }
 .button--delete {
   padding: 0;
@@ -55,14 +63,18 @@ summary::-webkit-details-marker {display: none; }
   fill: var(--red);
 }
 .button--add {
-  margin: var(--size-xxsmall) 0 var(--size-xsmall);
+  margin: var(--size-xsmall) 0 var(--size-xsmall);
   align-self: center;
-  width: calc(100% - 2 * var(--size-xxsmall));
+  width: calc(100% - 2 * var(--size-xsmall));
   justify-content: center;
 }
 .section--elevation-settings {
   display: flex;
   flex-direction: column;
+}
+.section--elevation-settings > .input,
+.section--elevation-settings > .switch {
+  margin:0 var(--size-xxsmall) var(--size-xxsmall) var(--size-xxsmall);
 }
 footer {
   flex-grow: 0;
@@ -73,7 +85,7 @@ footer {
   border-top: 1px solid var(--light-grey);
 }
 footer a {
-  padding: 0 var(--size-xxsmall);
+  padding: 0 var(--size-xsmall);
   color: var(--dark-grey);
   font-size: var(--font-size-small);
 }
@@ -106,4 +118,20 @@ input:invalid {
   border: 1px solid var(--red);
   outline: 1px solid var(--red);
   outline-offset: -2px;
+}
+.message-box {
+  padding: var(--size-xsmall) var(--size-xsmall) var(--size-xsmall) var(--size-xsmall);
+}
+.message-box .message {
+  font-family: var(--font-stack);
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--font-letter-spacing-pos-xsmall);
+  line-height: var(--font-line-height);
+}
+.style-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 var(--size-xsmall) var(--size-xsmall) var(--size-xxsmall);
 }
