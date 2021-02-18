@@ -10,5 +10,6 @@ export const ELEVATION_DEFAULTS = {
     y: '0.5*#',
     spread: '2*#',
     radius: '#'
-  }]
+  }],
+  styles: []
 }

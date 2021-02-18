@@ -1,7 +1,9 @@
 const allowedCodes = [
   'Backspace',
   'ArrowLeft',
-  'ArrowRight'
+  'ArrowRight',
+  'Delete',
+  'Shift'
 ]
 
 const restrictChars = event => {

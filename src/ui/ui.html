@@ -4,7 +4,7 @@
     <div class="message-box">
       <div class="message message--info">Select an elevation scale.<br />or</div>
     </div>
-    <button id="createScale" class="button button--primary">Create a new elevation scale</button>
+    <button id="createScale" type="button" class="button button--primary">Create a new elevation scale</button>
   </section>
   <!-- elevation settings -->
   <section data-section="elevationSettings" class="section--elevation-settings hidden">
@@ -48,27 +48,27 @@
     </select>
     <div class="input input--with-text">
       <div class="label">X</div>
-      <input class="input__field" data-property="x" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="x value" value=".25*#">
+      <input class="input__field" data-property="x" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="x value" value=".25*#">
     </div>
     <div class="input input--with-text">
       <div class="label">Y</div>
-      <input class="input__field" data-property="y" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="y value" value="1.5*#">
+      <input class="input__field" data-property="y" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="y value" value="1.5*#">
     </div>
     <div class="input input--with-text">
       <div class="label">Blur</div>
-      <input class="input__field" data-property="radius" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="blur value" value="2*#">
+      <input class="input__field" data-property="radius" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="blur value" value="2*#">
     </div>
     <div class="input input--with-text">
       <div class="label">Spread</div>
-      <input class="input__field" data-property="spread" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="spread value" value="0">
+      <input class="input__field" data-property="spread" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="spread value" value="0">
     </div>
     <div class="input input--with-text">
       <div class="label">Color #</div>
-      <input class="input__field" data-property="color" type="text" required pattern="^[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}[0-9A-Fa-f]{2}$" maxlength="6" value="000000" placeholder="000000">
+      <input class="input__field" data-property="color" type="text" required pattern="^[0-9A-Fa-f]{1,6}$" minlength="6" maxlength="6" value="000000" placeholder="000000">
     </div>
     <div class="input input--with-text">
       <div class="label">Opacity</div>
-      <input class="input__field" data-property="opacity" type="text" required pattern="^[0-9#,\.\-\*\+\/]{1,}$" placeholder="opacity in %" value="10">
+      <input class="input__field" data-property="opacity" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="opacity in %" value="10">
     </div>
   </details>
 </template>

@@ -17,7 +17,6 @@ const sectionElevationSettings = document.querySelector('[data-section="elevatio
 const sectionEmptyState = document.querySelector('[data-section="emptyState"]')
 const list = document.querySelector(`[data-id="${config.ids.elevationList}"]`) as HTMLElement
 const form = document.querySelector('form')
-const footer = document.querySelector('footer')
 const steps = document.querySelector(`[data-id="${config.ids.steps}"]`) as HTMLInputElement
 const createStyles = document.querySelector(`[data-id="${config.ids.createStyles}"]`) as HTMLInputElement
 // events
@@ -45,7 +44,7 @@ const updatePanel = data => {
   if (layers.length === 1) {
     toggleDeleteButton(layers[0], false)
   }
-  //
+  // open the first elevation layer
   toggleElevationLayer(list.querySelector('[data-id="elevationLayer"]'))
   // limit inputs
   limitToAllowed()

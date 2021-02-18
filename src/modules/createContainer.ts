@@ -5,7 +5,7 @@ const SETTINGS = {
   PADDING: 20
 }
 
-export default (): FrameNode => {
+export default (figma: PluginAPI): FrameNode => {
   const container: FrameNode = figma.createFrame()
   container.name = SETTINGS.NAME
   container.layoutMode = SETTINGS.LAYOUT_MODE as 'VERTICAL' | 'NONE' | 'HORIZONTAL'

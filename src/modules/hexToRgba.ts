@@ -5,9 +5,9 @@ export default (hex: '000000', opacity: '0') => {
   const [, r, g, b] = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   // return rgb
   return {
-    r: parseInt(r, 16) / 255, // by 255 to get rgb from 0-1
-    g: parseInt(g, 16) / 255, // by 255 to get rgb from 0-1
-    b: parseInt(b, 16) / 255, // by 255 to get rgb from 0-1
+    r: parseInt(r) / 255, // by 255 to get rgb from 0-1
+    g: parseInt(g) / 255, // by 255 to get rgb from 0-1
+    b: parseInt(b) / 255, // by 255 to get rgb from 0-1
     a: minMax(parseInt(opacity, 10) / 100, 0, 1)
   }
 }

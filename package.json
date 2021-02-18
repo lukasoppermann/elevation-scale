@@ -53,7 +53,10 @@
       "SceneNode",
       "FrameNode",
       "PluginAPI",
-      "BlendMode"
+      "BlendMode",
+      "onmessage",
+      "parent",
+      "NodeListOf"
     ]
   },
   "eslintConfig": {

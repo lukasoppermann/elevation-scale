@@ -1,31 +1,24 @@
 import createStyles from './createStyles'
-import { setContainerData, storeKeys } from './containerStore'
+import { getContainerData, setContainerData, storeKeys } from './containerStore'
 import createPreviewElement from './createPreviewElement'
 import createElevationLayer from './createElevationLayer'
-import createContainer from './createContainer'
-import { ELEVATION_DEFAULTS } from './defaults'
 
-export default (figma, container, data) => {
+export default (figma: PluginAPI, container, data) => {
   const focusNodes: SceneNode[] = []
-  let newContainer = false
-  // add new node
-  if (!container) {
-    container = createContainer()
-    figma.currentPage.appendChild(container)
-    newContainer = true
-    data = ELEVATION_DEFAULTS
-  }
   // remove children nodes
-  else {
-    data.steps = parseInt(data.steps)
-    container.children.forEach(child => child.remove())
-  }
-
+  data.steps = parseInt(data.steps)
+  container.children.forEach(child => child.remove())
+  // get styles
+  const containerData = getContainerData(container, storeKeys.ELEVATION_SETTNGS)
+  data.styles = containerData.styles || []
+  // add updated children nodes
   for (let i = 0; i < data.steps; i++) {
     // get elevation
     const elevation = [...data.elevationLayer].map(layer => {
       return createElevationLayer(i, layer)
     })
+    // elevation name
+    const elevationName = `Elevation / ${i}`
     // create elements
     const previewElements = createPreviewElement(i, elevation)
     // append to container
@@ -33,16 +26,14 @@ export default (figma, container, data) => {
     focusNodes.push(previewElements)
     // create styles
     if (data.createStyles === true) {
-      data.styles = createStyles(i, elevation) // data.styleName
-      console.log(data.styles)
+      const style = createStyles(elevation, data.styles[i] || null, elevationName)
+      data.styles[i] = style.id
     }
   }
   // zoom to container if new
-  if (newContainer === true) {
-    figma.viewport.scrollAndZoomIntoView(focusNodes)
-  }
-  // append & select
-  figma.currentPage.selection = [container]
+  figma.viewport.scrollAndZoomIntoView(focusNodes)
   // elevation settings
   setContainerData(container, storeKeys.ELEVATION_SETTNGS, data)
+  // append & select
+  figma.currentPage.selection = [container]
 }
