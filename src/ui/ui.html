@@ -46,29 +46,35 @@
       <option value="dropshadow">Dropshadow</option>
       <option value="innershadow">Innershadow</option>
     </select>
-    <div class="input input--with-text">
-      <div class="label">X</div>
-      <input class="input__field" data-property="x" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="x value" value=".25*#">
+    <div class="row">
+      <div class="input input--with-text">
+        <div class="label">X</div>
+        <input class="input__field" data-property="x" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="x value" value=".25*#">
+      </div>
+      <div class="input input--with-text">
+        <div class="label">Blur</div>
+        <input class="input__field" data-property="radius" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="blur value" value="2*#">
+      </div>
     </div>
-    <div class="input input--with-text">
-      <div class="label">Y</div>
-      <input class="input__field" data-property="y" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="y value" value="1.5*#">
+    <div class="row">
+      <div class="input input--with-text">
+        <div class="label">Y</div>
+        <input class="input__field" data-property="y" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="y value" value="1.5*#">
+      </div>
+      <div class="input input--with-text">
+        <div class="label">Spread</div>
+        <input class="input__field" data-property="spread" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="spread value" value="0">
+      </div>
     </div>
-    <div class="input input--with-text">
-      <div class="label">Blur</div>
-      <input class="input__field" data-property="radius" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="blur value" value="2*#">
-    </div>
-    <div class="input input--with-text">
-      <div class="label">Spread</div>
-      <input class="input__field" data-property="spread" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="spread value" value="0">
-    </div>
-    <div class="input input--with-text">
-      <div class="label">Color #</div>
-      <input class="input__field" data-property="color" type="text" required pattern="^[0-9A-Fa-f]{1,6}$" minlength="6" maxlength="6" value="000000" placeholder="000000">
-    </div>
-    <div class="input input--with-text">
-      <div class="label">Opacity</div>
-      <input class="input__field" data-property="opacity" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="opacity in %" value="10">
+    <div class="row">
+      <div class="input input--with-text">
+        <div class="label label--color"><div data-id="colorPreview" class="color-preview"></div></div>
+        <input class="input__field" data-id="color" data-property="color" type="text" required pattern="^[0-9A-Fa-f]{1,6}$" minlength="6" maxlength="6" value="000000" placeholder="000000">
+      </div>
+      <div class="input input--with-text">
+        <div class="label">Opacity</div>
+        <input class="input__field" data-property="opacity" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="opacity in %" value="10">
+      </div>
     </div>
   </details>
 </template>

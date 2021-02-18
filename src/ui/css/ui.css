@@ -19,7 +19,8 @@ details:last-child {
   border-bottom: 1px solid var(--light-grey);
 }
 details > .input,
-details > .select-menu {
+details > .select-menu,
+details > .row > .input {
   margin: 0 var(--size-xxsmall) var(--size-xxsmall) var(--size-xxsmall);
 }
 summary {
@@ -150,4 +151,16 @@ input:invalid {
 }
 .input--style-name{
   margin-bottom: var(--size-xsmall);
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.color-preview {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--grey);
+  border-radius: 3px;
 }
