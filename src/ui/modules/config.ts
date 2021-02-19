@@ -3,6 +3,7 @@ export default {
     elevationLayer: 'elevationLayer',
     elevationList: 'elevationLayerList',
     steps: 'steps',
-    createStyles: 'createStyles'
+    createStyles: 'createStyles',
+    elevationType: 'elevationType'
   }
 }

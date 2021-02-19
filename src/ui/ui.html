@@ -2,35 +2,36 @@
   <!-- empty State -->
   <section data-section="emptyState" class="section--empty-state">
     <div class="message-box">
-      <div class="message message--info">Select an elevation scale.<br />or</div>
+      <div class="message message--info">Select an elevation scale<br />or</div>
     </div>
     <button id="createScale" type="button" class="button button--primary">Create a new elevation scale</button>
   </section>
   <!-- elevation settings -->
   <section data-section="elevationSettings" class="section--elevation-settings hidden">
-    <div class="message-box">
-      <div class="message message--info">You can use a <span class="text-highlight">#</span> for the number on the scale (1, 2, 3).</div>
-    </div>
-    <div class="input input--with-text">
+    <div class="input input--with-text" data-tooltip="The amount of elevations you want to create">
       <div class="label">Steps</div>
       <input class="input__field" data-id="steps" type="text" required pattern="^[0-9]{1,2}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
     </div>
     <div class="style-options">
       <div class="switch">
         <input class="switch__toggle" type="checkbox" data-id="createStyles" id="createStyles">
-        <label class="switch__label" for="createStyles">Create styles</label>
+        <label class="switch__label" for="createStyles">Sync styles</label>
       </div>
     </div>
-    <div class="input input--with-icon input--style-name">
+    <div class="input input--with-icon input--style-name" data-tooltip="Name for the effect styles. Use # for the current step.">
       <div class="icon icon--effects"></div>
-      <input class="input__field" data-id="styleName" type="text" placeholder="Style name">
+      <input class="input__field" data-id="styleName" type="text" placeholder="Style name (e.g. Elevation/# dp)">
+    </div>
+    <div class="section-title">Elevation Layers (added to each step)<a class="icon icon--questionmark tooltip" href="https://github.com/lukasoppermann/elevation-scale" target="_blank"></a></div>
+    <div class="message-box">
+      <div class="message message--info">In your calculations <span class="text-highlight">#</span> is replaced by the current step.</div>
     </div>
     <div data-id="elevationLayerList"></div>
     <button data-id="add" type="button" class="button--add button button--secondary">Add Layer</button>
   </section>
 </form>
 <footer>
-<a class="subtle" href="https://github.com/lukasoppermann/elevation-scale" target="_blank">Help</a>
+<a class="subtle" href="https://github.com/lukasoppermann/elevation-scale" target="_blank">Documentation & Help</a>
 </footer>
 
 <template data-id="elevationLayerTemplate">
@@ -42,12 +43,12 @@
       </div>
       <button class="button--delete icon-button" data-id="deleteButton" type="submit"><div class="icon icon--trash"></div></button>
     </summary>
-    <select data-property="type" class="select-menu" id="elevationType">
-      <option value="dropshadow">Dropshadow</option>
-      <option value="innershadow">Innershadow</option>
+    <select data-property="type" class="select-menu" data-id="elevationType" id="elevationType">
+      <option value="DROP_SHADOW">Dropshadow</option>
+      <option value="INNER_SHADOW">Innershadow</option>
     </select>
     <div class="row">
-      <div class="input input--with-text">
+      <div class="input input--with-text-small">
         <div class="label">X</div>
         <input class="input__field" data-property="x" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="x value" value=".25*#">
       </div>
@@ -57,7 +58,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="input input--with-text">
+      <div class="input input--with-text-small">
         <div class="label">Y</div>
         <input class="input__field" data-property="y" type="text" required pattern="^[0-9#\.\-\*\+\/]{1,}$" placeholder="y value" value="1.5*#">
       </div>
@@ -67,7 +68,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="input input--with-text">
+      <div class="input input--with-text-small" data-tooltip="A 6 digit hex color">
         <div class="label label--color"><div data-id="colorPreview" class="color-preview"></div></div>
         <input class="input__field" data-id="color" data-property="color" type="text" required pattern="^[0-9A-Fa-f]{1,6}$" minlength="6" maxlength="6" value="000000" placeholder="000000">
       </div>

@@ -50,6 +50,14 @@ export default (values = {}) => {
     //
     return false
   })
+  // shadow select
+  clone.querySelector(`[data-id="${config.ids.elevationType}"]`).addEventListener('change', event => {
+    const form = self.closest('form')
+    // if form is valid
+    if (form.checkValidity() === true) {
+      postUpdateElevation(form)
+    }
+  })
   // return layer
   return clone
 }
