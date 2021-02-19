@@ -20,6 +20,7 @@ const list = document.querySelector(`[data-id="${config.ids.elevationList}"]`) a
 const form = document.querySelector('form')
 const steps = document.querySelector(`[data-id="${config.ids.steps}"]`) as HTMLInputElement
 const createStyles = document.querySelector(`[data-id="${config.ids.createStyles}"]`) as HTMLInputElement
+const styleName = document.querySelector(`[data-id="${config.ids.styleName}"]`) as HTMLInputElement
 // events
 onmessage = ({ data = undefined }) => {
   if (data !== undefined && data.pluginMessage !== undefined) {
@@ -33,8 +34,11 @@ onmessage = ({ data = undefined }) => {
 }
 
 const updatePanel = data => {
+  // set input values
   steps.value = data.steps
   createStyles.checked = (data.createStyles === true)
+  styleName.value = data.styleName || ''
+  // add elevation layers
   data.elevationLayer.forEach(layer => {
     list.appendChild(createElevationLayer(layer))
   })

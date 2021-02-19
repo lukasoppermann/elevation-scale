@@ -4,6 +4,7 @@ export default {
     elevationList: 'elevationLayerList',
     steps: 'steps',
     createStyles: 'createStyles',
+    styleName: 'styleName',
     elevationType: 'elevationType'
   }
 }

@@ -5,6 +5,7 @@ export default (form) => {
   const list = form.querySelector(`[data-id="${config.ids.elevationList}"]`) as HTMLElement
   const steps = form.querySelector(`[data-id="${config.ids.steps}"]`).value
   const createStyles = form.querySelector(`[data-id="${config.ids.createStyles}"]`).checked
+  const styleName = form.querySelector(`[data-id="${config.ids.styleName}"]`).value
   // get data for each shadow layer
   const elevationLayer = Array.from(list.querySelectorAll(`[data-id="${config.ids.elevationLayer}"]`)).map(elevationDetails => getElevationLayerValues(elevationDetails))
   // send data
@@ -14,6 +15,7 @@ export default (form) => {
       type: 'updateScale',
       steps,
       createStyles,
+      styleName,
       elevationLayer
     }
   }, '*')

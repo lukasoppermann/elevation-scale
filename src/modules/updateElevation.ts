@@ -18,7 +18,7 @@ export default (figma: PluginAPI, container, data) => {
       return createElevationLayer(i, layer)
     })
     // elevation name
-    const elevationName = `Elevation / ${i}`
+    const elevationName = elevationStyleName(i, data.styleName)
     // create elements
     const previewElements = createPreviewElement(i, elevation)
     // append to container
@@ -36,4 +36,10 @@ export default (figma: PluginAPI, container, data) => {
   setContainerData(container, storeKeys.ELEVATION_SETTNGS, data)
   // append & select
   figma.currentPage.selection = [container]
+}
+
+const elevationStyleName = (i: number, styleName: string): string => {
+  const number = String(i).padStart(2, '0')
+
+  return styleName.replace('##', number).replace('#', String(i))
 }
