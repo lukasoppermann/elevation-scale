@@ -5,7 +5,7 @@
 
 ## Installation
 
-<img src="https://github.com/lukasoppermann/design-tokens/raw/main/_resources/Plugin-Icon.png" width="50px"> 
+<img src="https://github.com/lukasoppermann/elevation-scale/blob/main/_resources/Plugin-Icon.png" width="50px"> 
 
 1. Go to the [elevation scale plugin page](https://www.figma.com/community/plugin/940989130927509964/Elevation-Scale)
 2. Click on install in the top right corner
