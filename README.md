@@ -17,6 +17,9 @@
 
 Changes are automatically applied and saved.
 
+### Steps
+`Steps` are the amount of elevations/shadows you want to create. For example `steps:2` will create two shadows each with all the layers you specify.
+
 ### Effect Styles
 To automatically create & update effect styles enable the `Sync Styles` option.
 You can optionall provide a `style name` that will be used to create the effect styles. If you add a `#` to the name it will be replaced with the current step.
@@ -29,3 +32,5 @@ Elevation / Level # // Elevation / Level 0, Elevation / Level 1, ...
 // Example style name with ##
 Elevation / ##dp // Elevation / 00dp, Elevation / 01dp, ..., Elevation / 12dp
 ```
+
+### Properties
