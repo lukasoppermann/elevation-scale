@@ -77,7 +77,7 @@ document.addEventListener('keyup', event => {
     setColorPreview(input.closest(`[data-id="${config.ids.elevationLayer}"]`))
   }
   // if form is valid
-  if (form.checkValidity() === true) {
+  if (['INPUT'].includes(input.nodeName) && form.checkValidity() === true) {
     postUpdateElevation(form)
   }
 })
