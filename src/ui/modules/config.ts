@@ -6,6 +6,7 @@ export default {
     createStyles: 'createStyles',
     styleName: 'styleName',
     elevationType: 'elevationType',
-    createScaleButton: 'createScaleButton'
+    createScaleButton: 'createScaleButton',
+    documentationLink: 'documentationLink'
   }
 }

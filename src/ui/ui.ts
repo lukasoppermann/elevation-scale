@@ -81,6 +81,15 @@ document.addEventListener('keyup', event => {
     postUpdateElevation(form)
   }
 })
+// keep focus within form
+document.querySelector(`[data-id="${config.ids.documentationLink}"]`).addEventListener('keydown', event => {
+  event.preventDefault()
+  if (sectionEmptyState.classList.contains('hidden')) {
+    steps.focus()
+  } else {
+    createScaleButton.focus()
+  }
+})
 // create scale
 createScaleButton.addEventListener('click', () => {
   parent.postMessage({ pluginMessage: { type: 'createScale' } }, '*')
