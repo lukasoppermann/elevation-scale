@@ -60,12 +60,10 @@ const toggleEmptyState = active => {
   if (active === true) {
     sectionEmptyState.classList.remove('hidden')
     sectionElevationSettings.classList.add('hidden')
-    createScaleButton.focus()
   // hide emptyState
   } else {
     sectionEmptyState.classList.add('hidden')
     sectionElevationSettings.classList.remove('hidden')
-    steps.focus()
   }
 }
 
