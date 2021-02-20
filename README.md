@@ -34,7 +34,7 @@ Elevation / ##dp // Elevation / 00dp, Elevation / 01dp, ..., Elevation / 12dp
 ```
 
 ### Properties
-- **Shadow type:**: Either `dropshadow` or `innershadow`
+- **Shadow type**: Either `dropshadow` or `innershadow`
 - **x**: The x offset of the shadow. `#` is replaced by the current step. E.g. `.5*#`
 - **y**: The y offset of the shadow. `#` is replaced by the current step. E.g. `2+#`
 - **blur**: The shadows blur radius. `#` is replaced by the current step. E.g. `(1+#)*4`
