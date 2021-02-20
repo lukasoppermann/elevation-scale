@@ -141,7 +141,7 @@ input:invalid {
   outline-offset: -2px;
 }
 .message-box {
-  padding: var(--size-xsmall) var(--size-xsmall) var(--size-xsmall) var(--size-xxsmall);
+  padding: var(--size-xsmall) var(--size-xsmall) var(--size-xsmall) var(--size-xsmall);
 }
 .message-box .message {
   font-family: var(--font-stack);
@@ -178,7 +178,7 @@ input:invalid {
   border-radius: 2px;
 }
 .section-title {
-  padding-left: var(--size-xxsmall);
+  padding-left: var(--size-xsmall);
 }
 .text-highlight {
   font-weight: bold;
