@@ -34,9 +34,10 @@ Elevation / ##dp // Elevation / 00dp, Elevation / 01dp, ..., Elevation / 12dp
 ```
 
 ### Properties
-- **x**:
-- **y**:
-- **blur**:
-- **spread**:
+- **Shadow type:**: Either `dropshadow` or `innershadow`
+- **x**: The x offset of the shadow. `#` is replaced by the current step. E.g. `.5*#`
+- **y**: The y offset of the shadow. `#` is replaced by the current step. E.g. `2+#`
+- **blur**: The shadows blur radius. `#` is replaced by the current step. E.g. `(1+#)*4`
+- **spread**: The shadows spread. `#` is replaced by the current step. E.g. `#/.5`
 - **color**: a 6-digit hex color code between `000000` and `FFFFFF`
-- **opacity**:
+- **opacity**: The opacity for the color. `#` is replaced by the current step. E.g. `10+#` if `#` = 1 -> `11%`
