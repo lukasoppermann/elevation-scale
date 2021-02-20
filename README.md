@@ -1,40 +1,17 @@
-Below are the steps to get your plugin running. You can also find instructions at:
+![Elevation Scale plugin for figma](https://github.com/lukasoppermann/elevation-scale/raw/main/_resources/Elevation-Scale-Plugin-Cover.png)
+# Elevation Scale
 
-  https://www.figma.com/plugin-docs/setup/
+> Create shadow systems and effect styles with your choice of steps from a custom function.
 
-This plugin template uses Typescript and NPM, two standard tools in creating JavaScript applications.
+## Usage
+1. Create a new elevation scale with the plugin
+2. Change the effect layer
+3. Shadow type (dropshadow or innershadow) 
+4. Color
+5. X, Y, Blur, Spread and Opacity — all those properties can use # which will be replaced with the current step index.
 
-First, download Node.js which comes with NPM. This will allow you to install TypeScript and other
-libraries. You can find the download link here:
 
-  https://nodejs.org/en/download/
+## Effect styles
+If you enable Sync Styles  the plugin will automatically create and update styles for your shadows.
 
-Next, install TypeScript using the command:
-
-  npm install -g typescript
-
-Finally, in the directory of your plugin, get the latest type definitions for the plugin API by running:
-
-  npm install --save-dev @figma/plugin-typings
-
-If you are familiar with JavaScript, TypeScript will look very familiar. In fact, valid JavaScript code
-is already valid Typescript code.
-
-TypeScript adds type annotations to variables. This allows code editors such as Visual Studio Code
-to provide information about the Figma API while you are writing code, as well as help catch bugs
-you previously didn't notice.
-
-For more information, visit https://www.typescriptlang.org/
-
-Using TypeScript requires a compiler to convert TypeScript (code.ts) into JavaScript (code.js)
-for the browser to run.
-
-We recommend writing TypeScript code using Visual Studio code:
-
-1. Download Visual Studio Code if you haven't already: https://code.visualstudio.com/.
-2. Open this directory in Visual Studio Code.
-3. Compile TypeScript to JavaScript: Run the "Terminal > Run Build Task..." menu item,
-    then select "tsc: watch - tsconfig.json". You will have to do this again every time
-    you reopen Visual Studio Code.
-
-That's it! Visual Studio Code will regenerate the JavaScript file every time you save.
+You can use the # in the style name as well. A ## will result in a 0 prefixed number (if below 10).

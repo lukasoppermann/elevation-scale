@@ -12,11 +12,9 @@
       <div class="label">Steps</div>
       <input class="input__field" data-id="steps" type="text" required pattern="^[0-9]{1,2}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
     </div>
-    <div class="style-options">
-      <div class="switch">
-        <input class="switch__toggle" type="checkbox" data-id="createStyles" id="createStyles">
-        <label class="switch__label" for="createStyles">Sync styles</label>
-      </div>
+    <div class="switch" data-tooltip="Create and update effect styles for each step">
+      <input class="switch__toggle" type="checkbox" data-id="createStyles" id="createStyles">
+      <label class="switch__label" for="createStyles">Sync styles</label>
     </div>
     <div class="input input--with-icon input--style-name" data-tooltip="Name for the effect styles. Use # for the current step.">
       <div class="icon icon--effects"></div>

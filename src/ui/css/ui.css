@@ -150,11 +150,8 @@ input:invalid {
   letter-spacing: var(--font-letter-spacing-pos-xsmall);
   line-height: var(--font-line-height);
 }
-.style-options {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0 var(--size-xsmall) 0 var(--size-xxsmall);
+.switch {
+  margin: 0 var(--size-xsmall) 0 var(--size-xxsmall); 
 }
 .input--style-name{
   margin-bottom: var(--size-xsmall);
@@ -193,18 +190,19 @@ input:invalid {
   position: relative;
 }
 [data-tooltip]:hover:after{
+  display: flex;
   font-family: var(--font-stack);
   font-size: var(--font-size-xsmall);
   font-weight: var(--font-weight-normal);
   letter-spacing: var(--font-letter-spacing-pos-xsmall);
   line-height: var(--font-line-height);
   position: absolute;
-  display: flex;
   justify-content: center;
   background: #000;
   color: #fff;
   content: attr(data-tooltip);
-  margin: 0 auto -85px;
+  margin: 0;
+  bottom: calc(-100% + 7px);
   padding: 4px 6px;
   max-width: calc(100% - var(--size-xxsmall) * 2);
   min-width: 40px;

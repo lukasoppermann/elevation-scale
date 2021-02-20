@@ -38,8 +38,11 @@ export default (figma: PluginAPI, container, data) => {
   figma.currentPage.selection = [container]
 }
 
-const elevationStyleName = (i: number, styleName: string): string => {
-  const number = String(i).padStart(2, '0')
+const elevationStyleName = (i: number, styleName?: string): string => {
+  if (styleName !== undefined) {
+    const number = String(i).padStart(2, '0')
 
-  return styleName.replace('##', number).replace('#', String(i))
+    return styleName.replace('##', number).replace('#', String(i))
+  }
+  return null
 }
