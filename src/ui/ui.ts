@@ -79,6 +79,17 @@ document.addEventListener('keyup', event => {
     postUpdateElevation(form)
   }
 })
+/**
+ * Save on createStyles toggle
+ *
+ */
+createStyles.addEventListener('click', event => {
+  // update if valid form
+  if (form.checkValidity() === true) {
+    postUpdateElevation(form)
+  }
+})
+
 // keep focus within form
 document.querySelector(`[data-id="${config.ids.documentationLink}"]`).addEventListener('keydown', event => {
   event.preventDefault()

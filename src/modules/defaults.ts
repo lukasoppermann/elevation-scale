@@ -3,7 +3,7 @@ export const ELEVATION_DEFAULTS = {
   steps: 5,
   createStyles: false,
   elevationLayer: [{
-    type: 'dropshadow',
+    type: 'DROP_SHADOW',
     color: '000000',
     opacity: '10+#',
     x: 0,
