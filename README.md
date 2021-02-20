@@ -34,3 +34,9 @@ Elevation / ##dp // Elevation / 00dp, Elevation / 01dp, ..., Elevation / 12dp
 ```
 
 ### Properties
+- **x**:
+- **y**:
+- **blur**:
+- **spread**:
+- **color**: a 6-digit hex color code between `000000` and `FFFFFF`
+- **opacity**:
