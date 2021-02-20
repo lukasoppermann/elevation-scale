@@ -22,7 +22,7 @@ Changes are automatically applied and saved.
 
 ### Effect Styles
 To automatically create & update effect styles enable the `Sync Styles` option.
-You can optionall provide a `style name` that will be used to create the effect styles. If you add a `#` to the name it will be replaced with the current step.
+You can optionally provide a `style name` that will be used to create the effect styles. If you add a `#` to the name it will be replaced with the current step.
 A `##` will result in a 0 prefixed number if below 10.
 
 ```js
