@@ -21,6 +21,7 @@ const form = document.querySelector('form')
 const steps = document.querySelector(`[data-id="${config.ids.steps}"]`) as HTMLInputElement
 const createStyles = document.querySelector(`[data-id="${config.ids.createStyles}"]`) as HTMLInputElement
 const styleName = document.querySelector(`[data-id="${config.ids.styleName}"]`) as HTMLInputElement
+const createScaleButton = document.querySelector(`[data-id="${config.ids.createScaleButton}"]`) as HTMLButtonElement
 // events
 onmessage = ({ data = undefined }) => {
   if (data !== undefined && data.pluginMessage !== undefined) {
@@ -59,10 +60,12 @@ const toggleEmptyState = active => {
   if (active === true) {
     sectionEmptyState.classList.remove('hidden')
     sectionElevationSettings.classList.add('hidden')
+    createScaleButton.focus()
   // hide emptyState
   } else {
     sectionEmptyState.classList.add('hidden')
     sectionElevationSettings.classList.remove('hidden')
+    steps.focus()
   }
 }
 
@@ -79,9 +82,9 @@ document.addEventListener('keyup', event => {
   }
 })
 // create scale
-document.getElementById('createScale').onclick = () => {
+createScaleButton.addEventListener('click', () => {
   parent.postMessage({ pluginMessage: { type: 'createScale' } }, '*')
-}
+})
 
 document.querySelector('[data-id="add"').addEventListener('click', (event) => {
   addElevationLayer(list)

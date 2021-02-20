@@ -3,7 +3,8 @@ const allowedCodes = [
   'ArrowLeft',
   'ArrowRight',
   'Delete',
-  'Shift'
+  'Shift',
+  'Tab'
 ]
 
 const restrictChars = event => {

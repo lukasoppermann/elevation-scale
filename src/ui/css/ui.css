@@ -153,6 +153,12 @@ input:invalid {
 .switch {
   margin: 0 var(--size-xsmall) 0 var(--size-xxsmall); 
 }
+.switch__label:focus:before {
+  box-shadow: 0 0 0 2px var(--blue);
+}
+.switch__toggle:focus ~ .switch__label:before {
+  box-shadow: 0 0 0 2px var(--blue);
+}
 .input--style-name{
   margin-bottom: var(--size-xsmall);
 }

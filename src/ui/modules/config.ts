@@ -5,6 +5,7 @@ export default {
     steps: 'steps',
     createStyles: 'createStyles',
     styleName: 'styleName',
-    elevationType: 'elevationType'
+    elevationType: 'elevationType',
+    createScaleButton: 'createScaleButton'
   }
 }
