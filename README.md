@@ -41,3 +41,10 @@ Elevation / ##dp // Elevation / 00dp, Elevation / 01dp, ..., Elevation / 12dp
 - **spread**: The shadows spread. `#` is replaced by the current step. E.g. `#/.5`
 - **color**: a 6-digit hex color code between `000000` and `FFFFFF`
 - **opacity**: The opacity for the color. `#` is replaced by the current step. E.g. `10+#` if `#` = 1 -> `11%`
+
+### Adding Layers
+An elevation step consists of one or more elevataion layers (= multiple shadows). Each layer you add will be present on each step.
+To add a new layer, click the "Add layer" button below the list of layers.
+To delete a layer click the trash can icon next to the layer name. (You can not delete the last layer)
+
+Layer names are purely for your organization of the different layers and have no effect on the elevations or the names.
