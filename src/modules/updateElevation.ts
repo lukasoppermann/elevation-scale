@@ -41,8 +41,11 @@ export default (figma: PluginAPI, container, data) => {
 const elevationStyleName = (i: number, styleName?: string): string => {
   if (styleName !== undefined) {
     const number = String(i).padStart(2, '0')
-
-    return styleName.replace('##', number).replace('#', String(i))
+    if (styleName.indexOf('#') > -1) {
+      return styleName.replace('##', number).replace('#', String(i))
+    } else {
+      return `${styleName} ${number}`
+    }
   }
   return null
 }

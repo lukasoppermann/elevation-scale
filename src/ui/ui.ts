@@ -38,7 +38,7 @@ const updatePanel = data => {
   // set input values
   steps.value = data.steps
   createStyles.checked = (data.createStyles === true)
-  styleName.value = data.styleName || ''
+  styleName.value = data.styleName || null
   // add elevation layers
   data.elevationLayer.forEach(layer => {
     list.appendChild(createElevationLayer(layer))
