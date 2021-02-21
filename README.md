@@ -43,7 +43,7 @@ Elevation / ##dp // Elevation / 00dp, Elevation / 01dp, ..., Elevation / 12dp
 - **opacity**: The opacity for the color. `#` is replaced by the current step. E.g. `10+#` if `#` = 1 -> `11%`
 
 ### Adding Layers
-An elevation step consists of one or more elevataion layers (each `layer` is an effect e.g. a dropshadow or innershadow). 
+An elevation step consists of one or more elevation layers (each `layer` is an effect e.g. a dropshadow or innershadow). 
 Each layer you add will be present on each step.
 To add a new layer, click the "Add layer" button below the list of layers.
 To delete a layer click the trash can icon next to the layer name. (You can not delete the last layer)
