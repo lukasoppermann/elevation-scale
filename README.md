@@ -33,6 +33,8 @@ Elevation / Level # // Elevation / Level 0, Elevation / Level 1, ...
 Elevation / ##dp // Elevation / 00dp, Elevation / 01dp, ..., Elevation / 12dp
 ```
 
+If you disable `Sync Styles` the `effect styles` will be deleted as well.
+
 ### Properties
 - **Shadow type**: Either `dropshadow` or `innershadow`
 - **x**: The x offset of the shadow. `#` is replaced by the current step. E.g. `.5*#`
