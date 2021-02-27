@@ -8,8 +8,9 @@ export default (figma: PluginAPI, container, data) => {
   // remove children nodes
   data.steps = parseInt(data.steps)
   container.children.forEach(child => child.remove())
-  // get styles
+  // get styles & id
   const containerData = getContainerData(container, storeKeys.ELEVATION_SETTNGS)
+  data.containerId = containerData.containerId
   data.styles = containerData.styles || []
   // add updated children nodes
   for (let i = 0; i < data.steps; i++) {

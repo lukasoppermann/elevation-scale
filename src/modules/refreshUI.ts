@@ -1,5 +1,4 @@
 import { getContainerData, storeKeys } from './containerStore'
-import minMax from './minMax'
 
 const SETTINGS = {
   LAYER_SIZE: 40,
