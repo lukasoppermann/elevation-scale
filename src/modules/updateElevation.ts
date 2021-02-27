@@ -1,4 +1,4 @@
-import createStyles from './createStyles'
+import createStyle from './createStyle'
 import { getContainerData, setContainerData, storeKeys } from './containerStore'
 import createPreviewElement from './createPreviewElement'
 import createElevationLayer from './createElevationLayer'
@@ -27,8 +27,16 @@ export default (figma: PluginAPI, container, data) => {
     focusNodes.push(previewElements)
     // create styles
     if (data.createStyles === true) {
-      const style = createStyles(elevation, data.styles[i] || null, elevationName)
+      const style = createStyle(elevation, data.styles[i] || null, elevationName)
       data.styles[i] = style.id
+    }
+    // sync styles is off
+    else if (data.styles.length > 0) {
+      data.styles.forEach(styleId => {
+        figma.getStyleById(styleId).remove()
+      })
+      // unset styles
+      data.styles = []
     }
   }
   // zoom to container if new
