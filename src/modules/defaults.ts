@@ -1,5 +1,6 @@
 export const ELEVATION_DEFAULTS = {
   name: 'Elevation',
+  containerId: null,
   steps: 5,
   createStyles: false,
   elevationLayer: [{
