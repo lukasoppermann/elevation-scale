@@ -141,7 +141,7 @@ footer a {
 .input__overlay {
   position: absolute;
   pointer-events: none;  
-  z-index: 100;
+  z-index: 10;
   top: 0px;
   left: 36px;
   font-size: var(--font-size-xsmall);
@@ -176,6 +176,14 @@ footer a {
 .input--with-text-medium .input__overlay{
   width: calc(100% - 80px);
   left: 80px;
+}
+.input--with-text .input__overlay{
+  width: calc(100% - 55px);
+  left: 55px;
+}
+.input--with-icon .input__overlay{
+  width: calc(100% - 32px);
+  left: 32px;
 }
 input:invalid {
   border: 1px solid var(--red);

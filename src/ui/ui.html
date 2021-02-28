@@ -10,7 +10,6 @@
   <section data-section="elevationSettings" class="section--elevation-settings hidden">
     <div class="input input--with-text" data-tooltip="The amount of elevations you want to create">
       <div class="label">Steps</div>
-      <div class="input__overlay"></div>
       <input class="input__field" data-id="steps" type="text" required pattern="^[0-9]{1,2}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
     </div>
     <div class="switch" data-tooltip="Create and update effect styles for each step">
@@ -19,6 +18,7 @@
     </div>
     <div class="input input--with-icon input--style-name" data-tooltip="Name for the effect styles. Use # for the current step.">
       <div class="icon icon--effects"></div>
+      <div class="input__overlay"></div>
       <input class="input__field" data-id="styleName" type="text" placeholder="Style name (e.g. Elevation/# dp)">
     </div>
     <div class="section-title">Elevation Layers (added to each step)<a class="icon icon--questionmark" href="https://github.com/lukasoppermann/elevation-scale/blob/main/README.md#adding-layers" target="_blank"></a></div>

@@ -2,14 +2,14 @@ export default (form: HTMLFormElement) => {
   const inputs: HTMLInputElement[] = Array.from(form.querySelectorAll('input'))
   // repare value for highlighting
   const prepareValue = (value: string) => {
-    // highlight #
-    value = value.replaceAll('#', '<span class="hl_hash">#</span>')
     // highlight operators
     value = value.replaceAll(/[\*\+-]/gi, '<span class="hl_operator">$&</span>')
     // slash operator
     value = value.replaceAll(/(?<!\<)\//gi, '<span class="hl_operator">$&</span>')
     // parenthese
     value = value.replaceAll(/[\(\)]/gi, '<span class="hl_parenthese">$&</span>')
+    // highlight #
+    value = value.replaceAll('#', '<span class="hl_hash">#</span>')
     // return value
     return value
   }
