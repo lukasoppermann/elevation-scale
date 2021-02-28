@@ -10,6 +10,7 @@
   <section data-section="elevationSettings" class="section--elevation-settings hidden">
     <div class="input input--with-text" data-tooltip="The amount of elevations you want to create">
       <div class="label">Steps</div>
+      <div class="input__overlay"></div>
       <input class="input__field" data-id="steps" type="text" required pattern="^[0-9]{1,2}$" maxlength="2" placeholder="Amount of elevations 1-99" value="5">
     </div>
     <div class="switch" data-tooltip="Create and update effect styles for each step">
@@ -48,20 +49,24 @@
     <div class="row">
       <div class="input input--with-text-small">
         <div class="label">X</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="x" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="x value" value=".25*#">
       </div>
       <div class="input input--with-text">
         <div class="label">Blur</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="radius" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="blur value" value="2*#">
       </div>
     </div>
     <div class="row">
       <div class="input input--with-text-small">
         <div class="label">Y</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="y" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="y value" value="1.5*#">
       </div>
       <div class="input input--with-text">
         <div class="label">Spread</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="spread" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="spread value" value="0">
       </div>
     </div>
@@ -72,6 +77,7 @@
       </div>
       <div class="input input--with-text">
         <div class="label">Opacity</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="opacity" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="opacity in %" value="10">
       </div>
     </div>

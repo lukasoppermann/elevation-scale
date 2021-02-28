@@ -10,6 +10,7 @@ import createElevationLayer from './modules/createElevationLayer'
 import addElevationLayer from './modules/addElevationLayer'
 import toggleDeleteButton from './modules/toggleDeleteButton'
 import limitToAllowed from './modules/limitToAllowed'
+import styledInputs from './modules/styledInputs'
 import config from './modules/config'
 import setColorPreview from './modules/setColorPreview'
 
@@ -54,6 +55,8 @@ const updatePanel = data => {
   toggleElevationLayer(list.querySelector(`[data-id="${config.ids.elevationLayer}"]`))
   // limit inputs
   limitToAllowed()
+  // actvate styles inputs
+  styledInputs(form)
 }
 
 const toggleEmptyState = active => {
@@ -106,6 +109,8 @@ createScaleButton.addEventListener('click', () => {
 
 document.querySelector('[data-id="add"').addEventListener('click', (event) => {
   addElevationLayer(list)
+  // update inputs
+  styledInputs(form)
   // update if valid form
   if (form.checkValidity() === true) {
     postUpdateElevation(form)

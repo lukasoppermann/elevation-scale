@@ -40,8 +40,7 @@
     "typescript-bundle": "^1.0.17",
     "url-loader": "^4.1.1",
     "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6",
-    "mathjs": "^9.2.0"
+    "webpack-cli": "^3.3.6"
   },
   "standardx": {
     "parser": "@typescript-eslint/parser",
