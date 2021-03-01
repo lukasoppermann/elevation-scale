@@ -18,6 +18,7 @@
     </div>
     <div class="input input--with-icon input--style-name" data-tooltip="Name for the effect styles. Use # for the current step.">
       <div class="icon icon--effects"></div>
+      <div class="input__overlay"></div>
       <input class="input__field" data-id="styleName" type="text" placeholder="Style name (e.g. Elevation/# dp)">
     </div>
     <div class="section-title">Elevation Layers (added to each step)<a class="icon icon--questionmark" href="https://github.com/lukasoppermann/elevation-scale/blob/main/README.md#adding-layers" target="_blank"></a></div>
@@ -48,20 +49,24 @@
     <div class="row">
       <div class="input input--with-text-small">
         <div class="label">X</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="x" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="x value" value=".25*#">
       </div>
       <div class="input input--with-text">
         <div class="label">Blur</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="radius" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="blur value" value="2*#">
       </div>
     </div>
     <div class="row">
       <div class="input input--with-text-small">
         <div class="label">Y</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="y" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="y value" value="1.5*#">
       </div>
       <div class="input input--with-text">
         <div class="label">Spread</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="spread" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="spread value" value="0">
       </div>
     </div>
@@ -72,6 +77,7 @@
       </div>
       <div class="input input--with-text">
         <div class="label">Opacity</div>
+        <div class="input__overlay"></div>
         <input class="input__field" data-property="opacity" type="text" required pattern="^[0-9#\.\-\*\+\/\(\)]{1,}$" placeholder="opacity in %" value="10">
       </div>
     </div>

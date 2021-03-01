@@ -3,8 +3,10 @@
   /* COLORS */
   /* Accent */
   --red: #f24822;
+  --blue-rgb: 24, 160, 251;
   --dark-grey: var(--black8);
-  --medium-grey: var(--black3);
+  --medium-grey: rgba(0, 0, 0, .5);
+  --lighter-grey: rgba(0, 0, 0, .3);
   --light-grey: var(--silver);
   --white-grey: #f9f9f9;
   /* Font sizes */
