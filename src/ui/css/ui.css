@@ -174,15 +174,15 @@ footer a {
   color: var(--lighter-grey);
 }
 .input--with-text-medium .input__overlay{
-  width: calc(100% - 80px);
+  width: calc(100% - 82px);
   left: 80px;
 }
 .input--with-text .input__overlay{
-  width: calc(100% - 55px);
+  width: calc(100% - 57px);
   left: 55px;
 }
 .input--with-icon .input__overlay{
-  width: calc(100% - 32px);
+  width: calc(100% - 34px);
   left: 32px;
 }
 input:invalid {
