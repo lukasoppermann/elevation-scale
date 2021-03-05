@@ -356,13 +356,13 @@
             const container = figma.createFrame();
             container.name = SETTINGS.NAME;
             container.layoutMode = SETTINGS.LAYOUT_MODE;
+            container.primaryAxisSizingMode = 'AUTO';
+            container.counterAxisSizingMode = 'AUTO';
             container.itemSpacing = SETTINGS.SPACING;
             container.paddingTop = SETTINGS.PADDING;
             container.paddingRight = SETTINGS.PADDING;
             container.paddingBottom = SETTINGS.PADDING;
             container.paddingLeft = SETTINGS.PADDING;
-            container.primaryAxisSizingMode = 'AUTO';
-            container.counterAxisSizingMode = 'AUTO';
             // return container
             return container;
         };
