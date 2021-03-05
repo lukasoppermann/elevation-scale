@@ -8,8 +8,10 @@ export default (form: HTMLFormElement) => {
     value = value.replaceAll(/(?<!\<)\//gi, '<span class="hl_operator">$&</span>')
     // parenthese
     value = value.replaceAll(/[\(\)]/gi, '<span class="hl_parenthese">$&</span>')
+    // highlight double #
+    value = value.replaceAll(/##/gi, '<span class="hl_hash">##</span>')
     // highlight #
-    value = value.replaceAll('#', '<span class="hl_hash">#</span>')
+    value = value.replaceAll(/(?<!#)#(?!#)/gi, '<span class="hl_hash">#</span>')
     // return value
     return value
   }
