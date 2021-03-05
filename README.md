@@ -1,4 +1,4 @@
-![Elevation Scale plugin for figma](https://github.com/lukasoppermann/elevation-scale/raw/main/_resources/Elevation-Scale-Plugin-Cover.png)
+![Elevation Scale plugin for figma](https://github.com/lukasoppermann/elevation-scale/raw/main/_resources/Elevation-Scale-Plugin-Cover.jpg)
 # Elevation Scale
 
 > Create shadow systems and effect styles with your choice of steps from a custom function.
